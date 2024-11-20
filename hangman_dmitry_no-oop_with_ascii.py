@@ -16,11 +16,11 @@ length = len(word)
 hidden_word = '_'*length
 shown_word = hidden_word
 
-print('Hi! here is what you need to guess: ' + hidden_word + ' \nyour turn: ')
+print('Hi! here is what you need to guess: ' + hidden_word + ' \n')
 
 ## input 
 
-letter = input('Guess letter: ')
+# letter = input('Guess letter: ')
 
 def open_letter(letter, word, shown_word): 
     # indices = np.where(array > 5)[0] = 
@@ -34,14 +34,14 @@ def open_letter(letter, word, shown_word):
     return shown_word
 
 
-
+# drawing
 def draw_next(state):
     hangman = '''
-    —
-      I 
-      O
-     /I\\
-     ll
+      _
+      | 
+      o
+     /|\\
+     | |
     '''
     count = 0
     for i in range(len(hangman)):
@@ -54,8 +54,10 @@ def draw_next(state):
     return hangman[:i]
         
 
+# the play
 state = 0
 while state < 8: 
+    letter = input('Ok. Guess next letter: ')
     if letter in word:
         shown_word = open_letter(letter, word, shown_word)
         if '_' not in shown_word: print('Congrats! You won, word is', shown_word)
@@ -64,11 +66,11 @@ while state < 8:
         state += 1
         print('nope, you made ' + str(state) + ' errors')
         print(draw_next(state))
-    letter = input('Ok. Guess next letter: ')
+        
     #todo add 
 
 print('Congrats! You lost')
-# drawing 
 
 
-# end
+
+
