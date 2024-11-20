@@ -54,7 +54,7 @@ def draw_next(state):
     return hangman[:i]
         
 
-# the play
+# the game process
 state = 0
 while state < 8: 
     letter = input('Ok. Guess next letter: ')
