@@ -90,12 +90,37 @@ class Hangman(Game):
             )
 
 class RandomPlayer(Player):
+    class RandomPlayer(Player):
 
-    def select_action(self, state: HangmanGameState, actions: List[GuessLetterAction]) -> Optional[GuessLetterAction]:
-        """ Given masked game state and possible actions, select the next action """
-        if len(actions) > 0:
-            return random.choice(actions)
-        return None
+        def select_action(self, state: HangmanGameState, actions: List[GuessLetterAction]) -> Optional[
+            GuessLetterAction]:
+            """
+            Given the current game state and possible actions, prompt the user to select the next action.
+            This assumes that the player is a human user.
+            """
+            if not actions:
+                print("No more available actions.")
+                return None
+
+            # Display masked word to the player
+            print("\nWord to guess:", state.word_to_guess)
+            print("Guessed letters:", ', '.join(state.guesses))
+            print("Incorrect guesses:", ', '.join(state.incorrect_guesses))
+
+            # Show available actions (letters left to guess)
+            available_letters = [action.letter for action in actions]
+            print("Available letters:", ', '.join(available_letters))
+
+            while True:
+                guess = input("Enter your guess (a single letter): ").lower()
+
+                # Ensure input is valid and available
+                if len(guess) != 1 or not guess.isalpha():
+                    print("Invalid input. Please enter a single letter.")
+                elif guess not in available_letters:
+                    print("Letter not available or already guessed. Try again.")
+                else:
+                    return GuessLetterAction(guess)
 
 
 if __name__ == "__main__":
