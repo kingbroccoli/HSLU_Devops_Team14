@@ -3,7 +3,7 @@ import random
 from enum import Enum
 
 from Valentin.hangman_game_valentin import chosen_word
-from devops_project.server.py.game import Game, Player
+from Devops_project.server.py.game import Game, Player
 
 
 class GuessLetterAction:
