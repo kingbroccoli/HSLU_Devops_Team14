@@ -27,12 +27,8 @@ class HangmanGameState:
 
 class Hangman(Game):
 
-
     def __init__(self) -> None:
         """ Important: Game initialization also requires a set_state call to set the 'word_to_guess' """
-        words = ['test', 'cat', 'dog', 'lamp']
-        all_letters = list('abcdefghijklmnopqrstuvwxyz') 
-        HangmanGameState(word_to_guess =random.choice(words), phase = GamePhase, guesses = [], incorrect_guesses =[])
         pass
 
     def get_state(self) -> HangmanGameState:
@@ -72,18 +68,16 @@ class RandomPlayer(Player):
 if __name__ == "__main__":
 
     game = Hangman()
-    game_state = HangmanGameState(word_to_guess=random.choice(words), phase=GamePhase.SETUP, guesses=[], incorrect_guesses=[])
-    # game.set_state(game_state)
+    game_state = HangmanGameState(word_to_guess='DevOps', phase=GamePhase.SETUP, guesses=[], incorrect_guesses=[])
+    game.set_state(game_state)
     
 
-
     # Initialize game data
-    # words = ['test', 'cat', 'dog', 'lamp']
-    # all_letters = list('abcdefghijklmnopqrstuvwxyz')  # All possible letters
+    words = ['test', 'cat', 'dog', 'lamp']
+    all_letters = list('abcdefghijklmnopqrstuvwxyz')  # All possible letters
     guessed_letters = []  # Store guessed letters
-    word_to_guess = game_state.word_to_guess
-    # word_to_guess = random.choice(words)
-    shown_word = ['_'] * len(word_to_guess)
+    word = random.choice(words)
+    shown_word = ['_'] * len(word)
 
     # Functions
     def open_letter(letter, word, shown_word):
@@ -184,8 +178,8 @@ if __name__ == "__main__":
         guessed_letters.append(guess)
         all_letters.remove(guess)  # Remove the guessed letter from the pool
 
-        if guess in word_to_guess:
-            shown_word = open_letter(guess, word_to_guess, shown_word)
+        if guess in word:
+            shown_word = open_letter(guess, word, shown_word)
             if '_' not in shown_word:
                 print("Congrats! You guessed the word:", ''.join(shown_word))
                 break
@@ -195,4 +189,4 @@ if __name__ == "__main__":
             draw_next(state-1)
 
     if state == 8:
-        print(f"Game over! The word was: {word_to_guess}")
+        print(f"Game over! The word was: {word}")
