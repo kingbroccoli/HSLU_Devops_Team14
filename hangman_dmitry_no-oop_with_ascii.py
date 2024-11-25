@@ -2,10 +2,14 @@
 import random
 import numpy as np
 
+import string
+
+
+
 
 # words 
 
-words = ['test', 'cat', 'dogt', 'lampt']
+words = ['test', 'cat', 'dog', 'lamp']
 
 # game 
 ## the task 
@@ -33,6 +37,10 @@ def open_letter(letter, word, shown_word):
     print(shown_word)
     return shown_word
 
+# Create a set of all lowercase letters
+letters_set = set(string.ascii_lowercase)
+
+print(letters_set - 'a')
 
 # drawing
 def draw_next(state):
