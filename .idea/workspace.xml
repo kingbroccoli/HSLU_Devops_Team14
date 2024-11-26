@@ -4,327 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef3dff5a-12df-484c-a962-90eaa0c2a8c8" name="Changes" comment="random Player part Beat">
-      <change afterPath="$PROJECT_DIR$/final_version.py" afterDir="false" />
+    <list default="true" id="ef3dff5a-12df-484c-a962-90eaa0c2a8c8" name="Changes" comment="final Version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Beat/hangman_Beat_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Beat/hangman_Beat_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Valentin/hangman_oop_valentin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Valentin/hangman_oop_valentin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/.pylintrc" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/.pylintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/benchmark.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/benchmark.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/benchmark_battleship.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/benchmark_battleship.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/benchmark_dog.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/benchmark_dog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/benchmark_hangman.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/benchmark_hangman.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/benchmark_uno.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/benchmark_uno.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/battleship/css/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/battleship/css/game.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/battleship/img/banner.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/battleship/img/banner.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/battleship/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/battleship/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/battleship/js/simulation_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/battleship/js/simulation_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/battleship/js/singleplayer_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/battleship/js/singleplayer_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/css/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/css/game.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/balls/ball_blue.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/balls/ball_blue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/balls/ball_green.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/balls/ball_green.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/balls/ball_red.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/balls/ball_red.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/balls/ball_yellow.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/balls/ball_yellow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/board.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/board.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/boards/board_blue.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/boards/board_blue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/boards/board_green.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/boards/board_green.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/boards/board_red.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/boards/board_red.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/boards/board_yellow.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/boards/board_yellow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/10_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/10_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/10_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/10_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/10_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/10_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/10_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/10_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/2_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/2_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/2_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/2_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/2_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/2_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/2_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/2_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/3_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/3_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/3_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/3_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/3_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/3_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/3_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/3_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/4_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/4_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/4_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/4_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/4_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/4_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/4_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/4_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/5_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/5_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/5_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/5_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/5_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/5_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/5_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/5_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/6_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/6_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/6_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/6_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/6_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/6_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/6_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/6_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/7_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/7_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/7_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/7_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/7_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/7_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/7_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/7_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/8_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/8_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/8_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/8_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/8_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/8_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/8_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/8_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/9_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/9_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/9_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/9_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/9_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/9_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/9_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/9_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/ace_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/ace_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/ace_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/ace_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/ace_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/ace_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/ace_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/ace_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/back.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/back.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/jack_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/jack_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/jack_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/jack_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/jack_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/jack_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/jack_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/jack_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/joker.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/joker.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/king_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/king_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/king_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/king_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/king_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/king_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/king_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/king_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/queen_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/queen_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/queen_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/queen_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/queen_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/queen_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/img/cards/queen_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/img/cards/queen_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/js/simulation_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/js/simulation_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/dog/js/singleplayer_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/dog/js/singleplayer_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/hangman/css/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/hangman/css/game.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/hangman/font/simple-pleasure.regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/hangman/font/simple-pleasure.regular.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/hangman/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/hangman/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/hangman/js/singleplayer_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/hangman/js/singleplayer_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/css/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/css/game.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_draw.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_draw.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_reverse.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_reverse.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_skip.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/blue_skip.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/deck.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/deck.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/green_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/green_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/green_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/green_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/green_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/green_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/green_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/green_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/green_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/green_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/green_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/green_5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/green_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/green_6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/green_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/green_7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/green_8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/green_8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/green_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/green_9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/green_draw.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/green_draw.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/green_reverse.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/green_reverse.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/green_skip.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/green_skip.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/red_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/red_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/red_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/red_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/red_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/red_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/red_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/red_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/red_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/red_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/red_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/red_5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/red_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/red_6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/red_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/red_7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/red_8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/red_8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/red_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/red_9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/red_draw.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/red_draw.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/red_reverse.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/red_reverse.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/red_skip.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/red_skip.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/wild.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/wild.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/wild_draw.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/wild_draw.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_draw.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_draw.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_reverse.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_reverse.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_skip.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/img/cards/yellow_skip.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/js/simulation_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/js/simulation_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/game/uno/js/singleplayer_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/game/uno/js/singleplayer_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/img/devops.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/img/devops.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/static/lib/jquery/jquery-3.7.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/static/lib/jquery/jquery-3.7.1.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/templates/game/battleship/simulation.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/templates/game/battleship/simulation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/templates/game/battleship/singleplayer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/templates/game/battleship/singleplayer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/templates/game/dog/simulation.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/templates/game/dog/simulation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/templates/game/dog/singleplayer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/templates/game/dog/singleplayer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/templates/game/hangman/singleplayer_local.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/templates/game/hangman/singleplayer_local.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/templates/game/uno/simulation.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/templates/game/uno/simulation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/templates/game/uno/singleplayer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/templates/game/uno/singleplayer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/inc/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/inc/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/py/battleship.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/py/battleship.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/py/dog.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/py/dog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/py/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/py/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/py/hangman.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/py/hangman.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/py/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/py/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/benchmark/server/py/uno.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/benchmark/server/py/uno.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/hangman.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/hangman.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/mypy.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/mypy.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/battleship/css/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/battleship/css/game.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/battleship/img/banner.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/battleship/img/banner.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/battleship/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/battleship/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/battleship/js/simulation_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/battleship/js/simulation_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/battleship/js/singleplayer_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/battleship/js/singleplayer_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/css/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/css/game.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/balls/ball_blue.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/balls/ball_blue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/balls/ball_green.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/balls/ball_green.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/balls/ball_red.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/balls/ball_red.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/balls/ball_yellow.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/balls/ball_yellow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/board.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/board.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/boards/board_blue.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/boards/board_blue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/boards/board_green.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/boards/board_green.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/boards/board_red.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/boards/board_red.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/boards/board_yellow.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/boards/board_yellow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/10_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/10_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/10_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/10_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/10_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/10_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/10_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/10_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/2_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/2_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/2_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/2_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/2_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/2_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/2_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/2_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/3_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/3_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/3_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/3_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/3_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/3_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/3_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/3_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/4_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/4_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/4_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/4_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/4_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/4_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/4_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/4_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/5_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/5_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/5_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/5_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/5_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/5_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/5_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/5_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/6_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/6_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/6_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/6_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/6_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/6_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/6_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/6_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/7_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/7_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/7_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/7_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/7_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/7_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/7_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/7_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/8_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/8_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/8_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/8_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/8_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/8_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/8_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/8_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/9_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/9_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/9_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/9_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/9_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/9_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/9_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/9_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/ace_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/ace_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/ace_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/ace_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/ace_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/ace_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/ace_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/ace_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/back.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/back.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/jack_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/jack_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/jack_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/jack_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/jack_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/jack_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/jack_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/jack_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/joker.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/joker.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/king_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/king_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/king_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/king_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/king_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/king_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/king_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/king_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/queen_of_clubs.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/queen_of_clubs.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/queen_of_diamonds.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/queen_of_diamonds.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/queen_of_hearts.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/queen_of_hearts.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/img/cards/queen_of_spades.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/img/cards/queen_of_spades.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/js/simulation_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/js/simulation_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/dog/js/singleplayer_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/dog/js/singleplayer_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/hangman/css/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/hangman/css/game.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/hangman/font/simple-pleasure.regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/hangman/font/simple-pleasure.regular.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/hangman/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/hangman/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/hangman/js/singleplayer_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/hangman/js/singleplayer_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/css/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/css/game.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/blue_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/blue_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/blue_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/blue_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/blue_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/blue_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/blue_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/blue_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/blue_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/blue_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/blue_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/blue_5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/blue_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/blue_6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/blue_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/blue_7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/blue_8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/blue_8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/blue_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/blue_9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/blue_draw.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/blue_draw.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/blue_reverse.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/blue_reverse.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/blue_skip.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/blue_skip.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/deck.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/deck.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/green_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/green_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/green_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/green_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/green_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/green_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/green_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/green_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/green_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/green_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/green_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/green_5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/green_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/green_6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/green_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/green_7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/green_8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/green_8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/green_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/green_9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/green_draw.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/green_draw.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/green_reverse.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/green_reverse.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/green_skip.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/green_skip.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/red_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/red_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/red_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/red_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/red_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/red_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/red_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/red_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/red_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/red_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/red_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/red_5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/red_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/red_6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/red_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/red_7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/red_8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/red_8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/red_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/red_9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/red_draw.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/red_draw.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/red_reverse.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/red_reverse.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/red_skip.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/red_skip.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/wild.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/wild.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/wild_draw.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/wild_draw.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/yellow_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/yellow_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/yellow_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/yellow_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/yellow_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/yellow_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/yellow_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/yellow_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/yellow_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/yellow_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/yellow_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/yellow_5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/yellow_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/yellow_6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/yellow_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/yellow_7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/yellow_8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/yellow_8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/yellow_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/yellow_9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/yellow_draw.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/yellow_draw.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/yellow_reverse.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/yellow_reverse.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/img/cards/yellow_skip.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/img/cards/yellow_skip.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/js/simulation_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/js/simulation_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/game/uno/js/singleplayer_local.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/game/uno/js/singleplayer_local.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/img/devops.png" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/img/devops.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/static/lib/jquery/jquery-3.7.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/static/lib/jquery/jquery-3.7.1.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/templates/game/battleship/simulation.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/templates/game/battleship/simulation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/templates/game/battleship/singleplayer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/templates/game/battleship/singleplayer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/templates/game/dog/simulation.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/templates/game/dog/simulation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/templates/game/dog/singleplayer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/templates/game/dog/singleplayer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/templates/game/hangman/singleplayer_local.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/templates/game/hangman/singleplayer_local.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/templates/game/uno/simulation.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/templates/game/uno/simulation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/templates/game/uno/singleplayer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/templates/game/uno/singleplayer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/inc/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/inc/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/py/battleship.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/py/battleship.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/py/dog.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/py/dog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/py/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/py/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/py/hangman.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/py/hangman.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/py/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/py/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/devops_project/server/py/uno.py" beforeDir="false" afterPath="$PROJECT_DIR$/Devops_project/server/py/uno.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Beat/hangman_Beat_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Beat/hangman.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,23 +34,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.final_version.executor": "Run",
-    "Python.hangman.executor": "Run",
-    "Python.hangman_oop_valentin.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/ValentinEitzinger/Documents/GitHub/HSLU_Devops_Team14",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.final_version.executor&quot;: &quot;Run&quot;,
+    &quot;Python.hangman.executor&quot;: &quot;Run&quot;,
+    &quot;Python.hangman_oop_valentin.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ValentinEitzinger/Documents/GitHub/HSLU_Devops_Team14&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Beat" />
@@ -422,7 +104,8 @@
       <option name="presentableId" value="Default" />
       <updated>1732372272902</updated>
       <workItem from="1732372273978" duration="3184000" />
-      <workItem from="1732451342033" duration="3207000" />
+      <workItem from="1732451342033" duration="4462000" />
+      <workItem from="1732642769928" duration="927000" />
     </task>
     <task id="LOCAL-00001" summary="change structure">
       <option name="closed" value="true" />
@@ -440,7 +123,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732455270374</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="final Version">
+      <option name="closed" value="true" />
+      <created>1732466224532</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732466224532</updated>
+    </task>
+    <task id="LOCAL-00004" summary="final Version">
+      <option name="closed" value="true" />
+      <created>1732466304891</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732466304891</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,11 +148,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="change structure" />
     <MESSAGE value="random Player part Beat" />
-    <option name="LAST_COMMIT_MESSAGE" value="random Player part Beat" />
+    <MESSAGE value="final Version" />
+    <option name="LAST_COMMIT_MESSAGE" value="final Version" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$hangman_oop_valentin.coverage" NAME="hangman_oop_valentin Coverage Results" MODIFIED="1732374240148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Valentin" />
     <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$hangman.coverage" NAME="hangman Coverage Results" MODIFIED="1732373620105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/devops_project/server/py" />
-    <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$final_version.coverage" NAME="final_version Coverage Results" MODIFIED="1732462632875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$final_version.coverage" NAME="final_version Coverage Results" MODIFIED="1732466090117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
