@@ -68,15 +68,16 @@ class RandomPlayer(Player):
 if __name__ == "__main__":
 
     game = Hangman()
-    game_state = HangmanGameState(word_to_guess='DevOps', phase=GamePhase.SETUP, guesses=[], incorrect_guesses=[])
-    game.set_state(game_state)
+    
+    # game.set_state(game_state)
     
 
     # Initialize game data
     words = ['test', 'cat', 'dog', 'lamp']
     all_letters = list('abcdefghijklmnopqrstuvwxyz')  # All possible letters
     guessed_letters = []  # Store guessed letters
-    word = random.choice(words)
+    game_state = HangmanGameState(word_to_guess=random.choice(words), phase=GamePhase.SETUP, guesses=[], incorrect_guesses=[])
+    word = game_state.word_to_guess
     shown_word = ['_'] * len(word)
 
     # Functions
