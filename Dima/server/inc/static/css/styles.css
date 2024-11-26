@@ -1,0 +1,56 @@
+body {
+ overflow: hidden;
+ margin:0px;
+ font-family: Arial;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 30px 1fr;
+}
+
+.header {
+  border-bottom: 1px solid lightgrey;
+  width: 100vw;
+  height: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.header .left{
+  border-right: 1px solid lightgrey;
+}
+
+.header .right{
+  text-align: right;
+}
+
+.sidebar {
+  border-left: 1px solid lightgrey;
+  overflow-y: auto;
+  padding:10px;
+}
+
+.footer {
+    border-top: 1px solid lightgrey;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  overflow: hidden;
+}
+
+.content {
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.sidebar #logs p {
+  padding:0;
+  margin:0;
+}
