@@ -18,11 +18,11 @@ class GamePhase(str, Enum):
 
 class HangmanGameState:
 
-    def __init__(self, word_to_guess: str, phase: GamePhase, guesses: List[str], incorrect_guesses: List[str]) -> None:
+    def __init__(self, word_to_guess: str, phase: GamePhase, guesses: List[str]) -> None:
         self.word_to_guess = word_to_guess
         self.phase = phase
         self.guesses = guesses
-        self.incorrect_guesses = incorrect_guesses
+
 
 
 class Hangman(Game):
@@ -68,14 +68,15 @@ class RandomPlayer(Player):
 if __name__ == "__main__":
 
     game = Hangman()
-    game_state = HangmanGameState(word_to_guess='DevOps', phase=GamePhase.SETUP, guesses=[], incorrect_guesses=[])
+    game_state = HangmanGameState(word_to_guess='DevOps', phase=GamePhase.SETUP, guesses=[])
     game.set_state(game_state)
     
 
     # Initialize game data
     words = ['test', 'cat', 'dog', 'lamp']
     all_letters = list('abcdefghijklmnopqrstuvwxyz')  # All possible letters
-    guessed_letters = []  # Store guessed letters
+    HangmanGameState.guesses = []  # Store guessed letters
+
     word = random.choice(words)
     shown_word = ['_'] * len(word)
 
@@ -162,7 +163,8 @@ if __name__ == "__main__":
     # max_mistakes = len(all_letters) - len(word)
     while state < 8:
         print("\nWord:", ' '.join(shown_word))
-        print("Guessed letters:", ' '.join(guessed_letters))
+        print("Guessed letters:", ' '.join(HangmanGameState.guesses))
+
         print("Remaining letters:", ' '.join(all_letters))
 
         guess = input("Guess a letter: ").lower()
@@ -171,11 +173,11 @@ if __name__ == "__main__":
             print("Please enter a single valid letter.")
             continue
 
-        if guess in guessed_letters:
+        if guess in HangmanGameState.guesses:
             print("You already guessed that letter!")
             continue
 
-        guessed_letters.append(guess)
+        HangmanGameState.guesses.append(guess)
         all_letters.remove(guess)  # Remove the guessed letter from the pool
 
         if guess in word:
@@ -183,10 +185,11 @@ if __name__ == "__main__":
             if '_' not in shown_word:
                 print("Congrats! You guessed the word:", ''.join(shown_word))
                 break
+
         else:
             state += 1
             print(f"Nope! You made {state} mistakes.")
             draw_next(state-1)
 
     if state == 8:
-        print(f"Game over! The word was: {word}")
+        print(f"Congrats! You lost. Gave over. The word was: {word}")
