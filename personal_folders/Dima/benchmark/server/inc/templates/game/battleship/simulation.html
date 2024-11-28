@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Battleship - Simulation</title>
+<link rel="icon" type="image/x-icon" href="/inc/static/img/devops.png">
+<script src="/inc/static/lib/jquery/jquery-3.7.1.min.js"></script>
+<script src="/inc/static/game/battleship/js/game.js"></script>
+<script src="/inc/static/game/battleship/js/simulation_local.js"></script>
+<link href="/inc/static/game/battleship/css/game.css" rel="stylesheet">
+</head>
+<body>
+<img id="banner" src="/inc/static/game/battleship/img/banner.jpg"><br>
+<canvas id="board">
+<script>
+    $(function(){
+        var simulation = new Simulation({
+            'ws_endpoint': '/battleship/simulation/ws',
+            'delay_millis': 100,
+            'game_config': {
+                'canvas_id': 'board',
+                'img_path': '/inc/static/game/battleship/img/',
+                'spectator': true,
+                'debug': false,
+            },
+        });
+    });
+</script>
+</body>
+</html>
