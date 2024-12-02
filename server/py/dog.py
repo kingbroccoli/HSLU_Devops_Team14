@@ -129,3 +129,36 @@ class RandomPlayer(Player):
 if __name__ == '__main__':
 
     game = Dog()
+
+
+    def setup_board():
+        board_numbers = range(0, 96)
+        board = {
+            "blue": {
+                "home": board_numbers[64:68],
+                "start": board_numbers[0],
+                "finish": board_numbers[68:72],
+            },
+            "green": {
+                "home": board_numbers[72:76],
+                "start": board_numbers[16],
+                "finish": board_numbers[76:80],
+            },
+            "yellow": {
+                "home": board_numbers[88:92],
+                "start": board_numbers[48],
+                "finish": board_numbers[92:96],
+            },
+            "red": {
+                "home": board_numbers[80:84],
+                "start": board_numbers[32],
+                "finish": board_numbers[84:88],
+            },
+        }
+        return board
+
+
+    # Example usage:
+    board = setup_board()
+    print("Red player's start:", board["red"]["start"])
+    print("Blue player's home:", list(board["blue"]["home"]))
