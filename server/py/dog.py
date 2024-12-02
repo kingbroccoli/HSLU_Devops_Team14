@@ -90,7 +90,36 @@ class Dog(Game):
 
     def __init__(self) -> None:
         """ Game initialization (set_state call not necessary, we expect 4 players) """
-        pass
+
+        self.board_numbers = range(0, 96)
+        self.board = {
+            "blue": {
+                "home": self.board_numbers[64:68],
+                "start": self.board_numbers[0],
+                "finish": self.board_numbers[68:72],
+            },
+            "green": {
+                "home": self.board_numbers[72:76],
+                "start": self.board_numbers[16],
+                "finish": self.board_numbers[76:80],
+            },
+            "yellow": {
+                "home": self.board_numbers[88:92],
+                "start": self.board_numbers[48],
+                "finish": self.board_numbers[92:96],
+            },
+            "red": {
+                "home": self.board_numbers[80:84],
+                "start": self.board_numbers[32],
+                "finish": self.board_numbers[84:88],
+            },
+        }
+
+    def get_player_positions(self, color: str) -> dict:
+
+        return self.board.get(color, None)
+
+
 
     def set_state(self, state: GameState) -> None:
         """ Set the game to a given state """
@@ -131,34 +160,6 @@ if __name__ == '__main__':
     game = Dog()
 
 
-    def setup_board():
-        board_numbers = range(0, 96)
-        board = {
-            "blue": {
-                "home": board_numbers[64:68],
-                "start": board_numbers[0],
-                "finish": board_numbers[68:72],
-            },
-            "green": {
-                "home": board_numbers[72:76],
-                "start": board_numbers[16],
-                "finish": board_numbers[76:80],
-            },
-            "yellow": {
-                "home": board_numbers[88:92],
-                "start": board_numbers[48],
-                "finish": board_numbers[92:96],
-            },
-            "red": {
-                "home": board_numbers[80:84],
-                "start": board_numbers[32],
-                "finish": board_numbers[84:88],
-            },
-        }
-        return board
+    red_positions = game.get_player_positions("red")
+    print("Red player positions:", red_positions)
 
-
-    # Example usage:
-    board = setup_board()
-    print("Red player's start:", board["red"]["start"])
-    print("Blue player's home:", list(board["blue"]["home"]))
