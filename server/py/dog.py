@@ -163,3 +163,25 @@ if __name__ == '__main__':
     red_positions = game.get_player_positions("red")
     print("Red player positions:", red_positions)
 
+    round = range(1,6)
+
+#for each round we have to specify how many cards each player is dealed
+    for round in round:
+        if round == 1:
+            deal_cards = random.sample(GameState.LIST_CARD, 6)
+            print("1: ", deal_cards)
+        if round == 2:
+            deal_cards = random.sample(GameState.LIST_CARD, 5)
+            print("2: ", deal_cards)
+        if round == 3:
+            deal_cards = random.sample(GameState.LIST_CARD, 4)
+            print("3: ", deal_cards)
+        if round == 4:
+            deal_cards = random.sample(GameState.LIST_CARD, 3)
+            print("4: ", deal_cards)
+        if round == 5:
+            deal_cards = random.sample(GameState.LIST_CARD, 2)
+            print("4: ", deal_cards)
+
+
+
