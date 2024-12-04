@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef3dff5a-12df-484c-a962-90eaa0c2a8c8" name="Changes" comment="final Version">
-      <change afterPath="$PROJECT_DIR$/personal_folders/Marcel/Dog_GameTemplate.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/py/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/HSLU_Devops_Team14.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HSLU_Devops_Team14.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/py/dog.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/py/dog.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +16,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
       </list>
     </option>
@@ -27,18 +23,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;marcelbre&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/kingbroccoli/HSLU_Devops_Team14.git&quot;,
-    &quot;accountId&quot;: &quot;eb636ab0-ed09-4d28-b7b3-34061721a4f1&quot;
-  }
-}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -56,6 +40,7 @@
     &quot;Python tests.Python tests for test_hangman.TestHangman.test_initial_state.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests in test_hangman.py.executor&quot;: &quot;Run&quot;,
     &quot;Python.combined_version.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dog.executor&quot;: &quot;Run&quot;,
     &quot;Python.final_version.executor&quot;: &quot;Run&quot;,
     &quot;Python.hangman.executor&quot;: &quot;Run&quot;,
     &quot;Python.hangman_oop_valentin.executor&quot;: &quot;Run&quot;,
@@ -78,7 +63,7 @@
       <recent name="C:\Users\ValentinEitzinger\Documents\GitHub\HSLU_Devops_Team14\Valentin" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_hangman.TestHangman.test_initial_state">
+  <component name="RunManager" selected="Python.dog">
     <configuration name="combined_version" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HSLU_Devops_Team14" />
       <option name="ENV_FILES" value="" />
@@ -94,6 +79,29 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/combined_version.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="dog" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="HSLU_Devops_Team14" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/server/py" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server/py/dog.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -134,7 +142,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in /Users/marcelbreithaupt/Library/Mobile Documents/com~apple~CloudDocs/ENV/Master/Semester 2/DevOps/Project/Beat/test_hangman.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in test_hangman.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="HSLU_Devops_Team14" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -152,9 +160,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.dog" />
         <item itemvalue="Python tests.Python tests for test_hangman.TestHangman.test_initial_state" />
         <item itemvalue="Python tests.Python tests for test_hangman.TestHangman" />
-        <item itemvalue="Python tests.Python tests in /Users/marcelbreithaupt/Library/Mobile Documents/com~apple~CloudDocs/ENV/Master/Semester 2/DevOps/Project/Beat/test_hangman.py" />
+        <item itemvalue="Python tests.Python tests in test_hangman.py" />
         <item itemvalue="Python.combined_version" />
       </list>
     </recent_temporary>
@@ -162,8 +171,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23726.102" />
-        <option value="bundled-python-sdk-5e1850174b45-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23726.102" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.22855.92" />
+        <option value="bundled-python-sdk-b068d85d1acf-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.22855.92" />
       </set>
     </attachedChunks>
   </component>
@@ -178,8 +187,10 @@
       <workItem from="1732372273978" duration="3184000" />
       <workItem from="1732451342033" duration="4462000" />
       <workItem from="1732642769928" duration="2206000" />
-      <workItem from="1732806155026" duration="2030000" />
-      <workItem from="1733153373778" duration="5598000" />
+      <workItem from="1732808209054" duration="5273000" />
+      <workItem from="1733157937962" duration="888000" />
+      <workItem from="1733158983639" duration="3529000" />
+      <workItem from="1733244909561" duration="3903000" />
     </task>
     <task id="LOCAL-00001" summary="change structure">
       <option name="closed" value="true" />
@@ -242,10 +253,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="final Version" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$.coverage" NAME=" Coverage Results" MODIFIED="1732644605853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Beat" />
     <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$combined_version.coverage" NAME="combined_version Coverage Results" MODIFIED="1732643990871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$hangman_oop_valentin.coverage" NAME="hangman_oop_valentin Coverage Results" MODIFIED="1732374240148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Valentin" />
     <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$hangman.coverage" NAME="hangman Coverage Results" MODIFIED="1732373620105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/devops_project/server/py" />
     <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$final_version.coverage" NAME="final_version Coverage Results" MODIFIED="1732466090117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$.coverage" NAME=" Coverage Results" MODIFIED="1732644605853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Beat" />
+    <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$dog.coverage" NAME="dog Coverage Results" MODIFIED="1733249246039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/py" />
   </component>
 </project>
