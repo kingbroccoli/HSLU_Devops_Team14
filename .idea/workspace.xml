@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef3dff5a-12df-484c-a962-90eaa0c2a8c8" name="Changes" comment="final Version">
-      <change afterPath="$PROJECT_DIR$/.idea/HSLU_Devops_Team14.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Beat/test_hangman.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Beat/hangman.py" beforeDir="false" afterPath="$PROJECT_DIR$/Beat/hangman.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/personal_folders/Marcel/Dog_GameTemplate.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/py/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/HSLU_Devops_Team14.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HSLU_Devops_Team14.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +19,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Jupyter Notebook" />
         <option value="Python Script" />
       </list>
     </option>
@@ -28,6 +27,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;marcelbre&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kingbroccoli/HSLU_Devops_Team14.git&quot;,
+    &quot;accountId&quot;: &quot;eb636ab0-ed09-4d28-b7b3-34061721a4f1&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -39,27 +50,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.Python tests for test_hangman.TestHangman.executor": "Run",
-    "Python tests.Python tests for test_hangman.TestHangman.test_initial_state.executor": "Run",
-    "Python tests.Python tests in test_hangman.py.executor": "Run",
-    "Python.combined_version.executor": "Run",
-    "Python.final_version.executor": "Run",
-    "Python.hangman.executor": "Run",
-    "Python.hangman_oop_valentin.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/ValentinEitzinger/Documents/GitHub/HSLU_Devops_Team14",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for test_hangman.TestHangman.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_hangman.TestHangman.test_initial_state.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_hangman.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.combined_version.executor&quot;: &quot;Run&quot;,
+    &quot;Python.final_version.executor&quot;: &quot;Run&quot;,
+    &quot;Python.hangman.executor&quot;: &quot;Run&quot;,
+    &quot;Python.hangman_oop_valentin.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ValentinEitzinger/Documents/GitHub/HSLU_Devops_Team14&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Beat" />
@@ -123,7 +134,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in test_hangman.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in /Users/marcelbreithaupt/Library/Mobile Documents/com~apple~CloudDocs/ENV/Master/Semester 2/DevOps/Project/Beat/test_hangman.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="HSLU_Devops_Team14" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -143,7 +154,7 @@
       <list>
         <item itemvalue="Python tests.Python tests for test_hangman.TestHangman.test_initial_state" />
         <item itemvalue="Python tests.Python tests for test_hangman.TestHangman" />
-        <item itemvalue="Python tests.Python tests in test_hangman.py" />
+        <item itemvalue="Python tests.Python tests in /Users/marcelbreithaupt/Library/Mobile Documents/com~apple~CloudDocs/ENV/Master/Semester 2/DevOps/Project/Beat/test_hangman.py" />
         <item itemvalue="Python.combined_version" />
       </list>
     </recent_temporary>
@@ -151,7 +162,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-5a2391486177-2887949eec09-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.13763.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23726.102" />
+        <option value="bundled-python-sdk-5e1850174b45-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23726.102" />
       </set>
     </attachedChunks>
   </component>
@@ -166,6 +178,8 @@
       <workItem from="1732372273978" duration="3184000" />
       <workItem from="1732451342033" duration="4462000" />
       <workItem from="1732642769928" duration="2206000" />
+      <workItem from="1732806155026" duration="2030000" />
+      <workItem from="1733153373778" duration="5598000" />
     </task>
     <task id="LOCAL-00001" summary="change structure">
       <option name="closed" value="true" />
