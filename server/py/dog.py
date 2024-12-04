@@ -124,13 +124,12 @@ class Dog(Game):
 
         for round_number in rounds:
             deal_count = cards_per_round[round_number]
-            for player in self.players:
-                # Use your existing logic to deal cards
-                dealt_cards = random.sample(LIST_CARD, deal_count)
-                self.player_hands[player].extend(dealt_cards)
             print(f"Round {round_number}:")
-            for player, hand in self.player_hands.items():
-                print(f"  {player}: {hand}")
+            for player in self.players:
+                # Deal cards for the current player in this round
+                dealt_cards = random.sample(LIST_CARD, deal_count)
+                self.player_hands[player] = dealt_cards 
+                print(f"  {player}: {self.player_hands[player]}")
 
     def get_player_positions(self, color: str) -> dict:
 

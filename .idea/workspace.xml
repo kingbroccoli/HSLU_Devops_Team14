@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef3dff5a-12df-484c-a962-90eaa0c2a8c8" name="Changes" comment="Template w/o defined numbers">
-      <change beforePath="$PROJECT_DIR$/.idea/HSLU_Devops_Team14.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HSLU_Devops_Team14.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/py/dog.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/py/dog.py" afterDir="false" />
     </list>
@@ -204,7 +202,7 @@
       <workItem from="1732642769928" duration="2206000" />
       <workItem from="1732806155026" duration="2030000" />
       <workItem from="1733153373778" duration="5598000" />
-      <workItem from="1733333255660" duration="853000" />
+      <workItem from="1733333255660" duration="1610000" />
     </task>
     <task id="LOCAL-00001" summary="change structure">
       <option name="closed" value="true" />
@@ -300,6 +298,6 @@
     <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$hangman_oop_valentin.coverage" NAME="hangman_oop_valentin Coverage Results" MODIFIED="1732374240148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Valentin" />
     <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$hangman.coverage" NAME="hangman Coverage Results" MODIFIED="1732373620105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/devops_project/server/py" />
     <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$final_version.coverage" NAME="final_version Coverage Results" MODIFIED="1732466090117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$dog.coverage" NAME="dog Coverage Results" MODIFIED="1733334029530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/py" />
+    <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$dog.coverage" NAME="dog Coverage Results" MODIFIED="1733334863066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/py" />
   </component>
 </project>
