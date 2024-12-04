@@ -114,6 +114,23 @@ class Dog(Game):
                 "finish": self.board_numbers[84:88],
             },
         }
+        self.players = ["blue", "green", "yellow", "red"]
+        self.player_hands = {player: [] for player in self.players}  # Cards for each player
+
+    def deal_cards(self, LIST_CARD):
+        """Deals cards to each player for five rounds."""
+        rounds = range(1, 6)
+        cards_per_round = {1: 6, 2: 5, 3: 4, 4: 3, 5: 2}
+
+        for round_number in rounds:
+            deal_count = cards_per_round[round_number]
+            for player in self.players:
+                # Use your existing logic to deal cards
+                dealt_cards = random.sample(LIST_CARD, deal_count)
+                self.player_hands[player].extend(dealt_cards)
+            print(f"Round {round_number}:")
+            for player, hand in self.player_hands.items():
+                print(f"  {player}: {hand}")
 
     def get_player_positions(self, color: str) -> dict:
 
@@ -158,30 +175,11 @@ class RandomPlayer(Player):
 if __name__ == '__main__':
 
     game = Dog()
+    game_state_cards = GameState.LIST_CARD  # Replace with your actual card list
+    game.deal_cards(game_state_cards)
 
 
     red_positions = game.get_player_positions("red")
     print("Red player positions:", red_positions)
-
-    round = range(1,6)
-
-#for each round we have to specify how many cards each player is dealed
-    for round in round:
-        if round == 1:
-            deal_cards = random.sample(GameState.LIST_CARD, 6)
-            print("1: ", deal_cards)
-        if round == 2:
-            deal_cards = random.sample(GameState.LIST_CARD, 5)
-            print("2: ", deal_cards)
-        if round == 3:
-            deal_cards = random.sample(GameState.LIST_CARD, 4)
-            print("3: ", deal_cards)
-        if round == 4:
-            deal_cards = random.sample(GameState.LIST_CARD, 3)
-            print("4: ", deal_cards)
-        if round == 5:
-            deal_cards = random.sample(GameState.LIST_CARD, 2)
-            print("4: ", deal_cards)
-
 
 
