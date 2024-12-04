@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef3dff5a-12df-484c-a962-90eaa0c2a8c8" name="Changes" comment="final Version">
-      <change afterPath="$PROJECT_DIR$/personal_folders/Marcel/Dog_GameTemplate.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/py/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/HSLU_Devops_Team14.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HSLU_Devops_Team14.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ef3dff5a-12df-484c-a962-90eaa0c2a8c8" name="Changes" comment="Template w/o defined numbers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/personal_folders/Marcel/Dog_GameTemplate.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/personal_folders/Marcel/Dog_GameTemplate.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,17 +226,45 @@
       <option name="project" value="LOCAL" />
       <updated>1732643769369</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Template w/o defined numbers">
+      <option name="closed" value="true" />
+      <created>1733291873826</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733291873826</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Template w/o defined numbers">
+      <option name="closed" value="true" />
+      <created>1733292001478</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733292001478</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="change structure" />
     <MESSAGE value="random Player part Beat" />
     <MESSAGE value="final Version" />
-    <option name="LAST_COMMIT_MESSAGE" value="final Version" />
+    <MESSAGE value="Template w/o defined numbers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Template w/o defined numbers" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HSLU_Devops_Team14$combined_version.coverage" NAME="combined_version Coverage Results" MODIFIED="1732643990871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
