@@ -103,6 +103,7 @@ class Hangman(Game):
             print(f" |    {left_leg} {right_leg}")
             print(" |_")
         print(f"Incorrect guesses: {' '.join(self.state.incorrect_guesses)}")
+        print(f"Guesses: {' '.join(self.state.guesses)}")
         if self.state.phase == GamePhase.FINISHED:
             print(f"Solution: {self.state.word_to_guess}")
 
@@ -144,42 +145,42 @@ class StructuredPlayer(Player):
         return actions[0]
 
 
-# if __name__ == "__main__":
-#
-#     game = Hangman()
-#     game_state = HangmanGameState(word_to_guess='DevOps')
-#     game.set_state(game_state)
-#     player = StructuredPlayer()
-#     for _ in range(26):
-#         if game.state.phase == GamePhase.FINISHED:
-#             break
-#         act = player.select_action(game.get_state(), game.get_list_action())
-#         game.apply_action(act)
-#         game.print_state()
-#         print("\n---------------------\n")
-
 if __name__ == "__main__":
 
-    # Initialize the Hangman game
     game = Hangman()
+    game_state = HangmanGameState(word_to_guess='DevOps')
+    game.set_state(game_state)
+    player = StructuredPlayer()
+    for _ in range(26):
+        if game.state.phase == GamePhase.FINISHED:
+            break
+        act = player.select_action(game.get_state(), game.get_list_action())
+        game.apply_action(act)
+        game.print_state()
+        print("\n---------------------\n")
 
-    # Set up a new game state
-    game_state = HangmanGameState(
-        word_to_guess="DevOps".upper(), # Word to guess
-        phase=GamePhase.RUNNING,         # Phase set to RUNNING
-        guesses=[],                      # No correct guesses yet
-        incorrect_guesses=[]             # No incorrect guesses yet
-    )
-
-    game.set_state(game_state)  # Initialize the game state
-    i = 0
-    print(i)
-    game.print_state()
-    print('game_state', game_state)
-    # Start taking guesses in a loop until the game ends
-    while game.get_state().phase != GamePhase.FINISHED:
-        i +=1
-        print('i', i)
+# if __name__ == "__main__":
+#
+#     # Initialize the Hangman game
+#     game = Hangman()
+#
+#     # Set up a new game state
+#     game_state = HangmanGameState(
+#         word_to_guess="DevOps".upper(), # Word to guess
+#         phase=GamePhase.RUNNING,         # Phase set to RUNNING
+#         guesses=[],                      # No correct guesses yet
+#         incorrect_guesses=[]             # No incorrect guesses yet
+#     )
+#
+#     game.set_state(game_state)  # Initialize the game state
+#     i = 0
+#     print(i)
+#     game.print_state()
+#     print('game_state', game_state)
+#     # Start taking guesses in a loop until the game ends
+#     while game.get_state().phase != GamePhase.FINISHED:
+#         i +=1
+#         print('i', i)
         # Display available actions
         actions = game.get_list_action()
         print("\nAvailable actions:", [action.letter for action in actions])
