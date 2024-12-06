@@ -13,8 +13,6 @@ from typing import List, Optional, Dict
 
 from server.py.dog import Card, Marble, PlayerState, Action, GameState, GamePhase
 
-# TODO: Test, if partner can move marbles inside partners finish area
-
 class DogBenchmark(benchmark.Benchmark):
 
     CNT_PLAYERS = 4
@@ -25,11 +23,10 @@ class DogBenchmark(benchmark.Benchmark):
 
     def test_initial_game_state_values(self):
         """Test 001: Validate values of initial game state (cnt_round=1) [5 points]"""
-        # TODO: Must be valid for 2 players too!
         self.game_server.reset()
         state = self.game_server.get_state()
 
-        assert state.phase == GamePhase.RUNNING, f'{state}Error: "bool_game_finished" must be False initially'
+        assert state.phase == GamePhase.RUNNING, f'{state}Error: "phase" must be gamePhase.RUNNING initially'
         assert state.cnt_round == 1, f'{state}Error: "cnt_round" must be 1 initially'
         assert len(state.list_card_discard) == 0, f'{state}Error: len("list_card_discard") must be 0 initially'
         assert len(state.list_card_draw) == 86, f'{state}Error: len("list_card_draw") must be 86 initially'
@@ -43,12 +40,9 @@ class DogBenchmark(benchmark.Benchmark):
         for player in state.list_player:
             assert len(player.list_card) == 6, f'{state}Error: len("list_player.list_card") must be 6 initially'
             assert len(player.list_marble) == 4, f'{state}Error: len("list_player.list_marble") must be 4 initially'
-            #assert player.idx_player >= 0, f'Error: "list_player.idx_player" must >= 0'
-            #assert player.idx_player < 4, f'Error: "list_player.idx_player" must < 4'
 
     def test_later_game_state_values(self):
         """Test 002: Validate values of later game state (cnt_round=2) [5 points]"""
-        # TODO: Must be valid for 2 players too!
         self.start_game_state_at_round_2()
 
         state = self.game_server.get_state()
@@ -62,8 +56,6 @@ class DogBenchmark(benchmark.Benchmark):
 
         for player in state.list_player:
             assert len(player.list_marble) == 4, f'{state}Error: len("list_player.list_marble") must be 4 initially'
-            #assert player.idx_player >= 0, f'Error: "list_player.idx_player" must >= 0'
-            #assert player.idx_player < 4, f'Error: "list_player.idx_player" must < 4'
 
     def test_get_list_action_without_start_cards(self):
         """Test 003: Test get_list_action without start-cards [1 point]"""
@@ -236,7 +228,7 @@ class DogBenchmark(benchmark.Benchmark):
         player.list_card = [Card(suit='♦', rank='A')]
         player2 = state.list_player[idx_player_active + 1]
         player2.list_marble[0].pos = 0
-        player2.list_marble[0].is_save = True
+        player2.list_marble[0].is_save = False
         self.game_server.set_state(state)
         str_state_1 = str(state)
 
@@ -432,11 +424,23 @@ class DogBenchmark(benchmark.Benchmark):
                 Action(card=card, pos_from=0, pos_to=49),
                 Action(card=card, pos_from=1, pos_to=17),
                 Action(card=card, pos_from=1, pos_to=33),
-                Action(card=card, pos_from=1, pos_to=49)
+                Action(card=card, pos_from=1, pos_to=49),
+                Action(card=card, pos_from=17, pos_to=0),
+                Action(card=card, pos_from=33, pos_to=0),
+                Action(card=card, pos_from=49, pos_to=0),
+                Action(card=card, pos_from=17, pos_to=1),
+                Action(card=card, pos_from=33, pos_to=1),
+                Action(card=card, pos_from=49, pos_to=1)
             ]
 
             hint = str_state
             hint += f'Error 1: "get_list_action" must return {len(list_action_expected)} not {len(list_action_found)} actions'
+            hint += f'\nExpected actions:'
+            for action in list_action_expected:
+                    hint += f'\n - {action}'
+            hint += f'\nFound actions:'
+            for action in list_action_found:
+                    hint += f'\n - {action}'
             assert len(list_action_found) == len(list_action_expected), hint
 
             hint = str_state
@@ -449,7 +453,7 @@ class DogBenchmark(benchmark.Benchmark):
             assert self.get_sorted_list_action(list_action_found) == self.get_sorted_list_action(list_action_expected), hint
 
     def test_swap_with_JAKE_2(self):
-        """Test 022: Test swap list_actions with card JAKE no oponents an no other actions [1 point]"""
+        """Test 022: Test swap list_actions with card JAKE no oponents and no other actions [1 point]"""
 
         list_card = [Card(suit='♣', rank='J'), Card(suit='♦', rank='J'), Card(suit='♥', rank='J'), Card(suit='♠', rank='J')]
 
@@ -483,6 +487,12 @@ class DogBenchmark(benchmark.Benchmark):
 
             hint = str_state
             hint +=f'Error 1: "get_list_action" must return {len(list_action_expected)} not {len(list_action_found)} actions'
+            hint += f'\nExpected actions:'
+            for action in list_action_expected:
+                    hint += f'\n - {action}'
+            hint += f'\nFound actions:'
+            for action in list_action_found:
+                    hint += f'\n - {action}'
             assert len(list_action_found) == len(list_action_expected), hint
 
             hint = str_state
@@ -1807,7 +1817,6 @@ class DogBenchmark(benchmark.Benchmark):
             player.list_marble[0].is_save = False
 
             self.game_server.set_state(state)
-            #self.game_server.print_state()
             str_states = str(state)
 
             list_action_found = self.game_server.get_list_action()
@@ -1846,11 +1855,10 @@ class DogBenchmark(benchmark.Benchmark):
         state.bool_card_exchanged = True
 
         player = state.list_player[idx_player_active]
-        player.list_card = [Card(suit='♣', rank='5'), Card(suit='♣', rank='5')]  # TODO: Test why with two JKR it takes forever (when 041 is run before!?!)
+        player.list_card = [Card(suit='♣', rank='5'), Card(suit='♣', rank='5')]
         player.list_marble[0].pos = 0
 
         self.game_server.set_state(state)
-        #self.game_server.print_state()
         str_state = str(state)
 
         list_action_found = self.game_server.get_list_action()
@@ -2145,8 +2153,6 @@ class DogBenchmark(benchmark.Benchmark):
                     self.send_home_marble(card=card, pos_from=pos_from, pos_to=pos_to, is_own_marble=is_own_marble)
 
 
-
-
 if __name__ == '__main__':
 
     if len(sys.argv) < 3:
@@ -2156,9 +2162,10 @@ if __name__ == '__main__':
         print("  or python benchmark_dog_copy.py remote [host:port]")
         sys.exit()
 
-        
-    #os.environ["DISABLED_FEATURES"] = 'test_finish_game'
-    
     benchmark = DogBenchmark(argv=sys.argv)
-    benchmark.run_tests()
-
+    
+    if True:  # Run all tests
+        benchmark.run_tests()
+    
+    else: # Run specific test(s)
+        benchmark.test_stock_out_of_cards()
