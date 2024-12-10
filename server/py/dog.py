@@ -93,28 +93,28 @@ class Dog(Game):
 
         self.board_numbers = range(0, 96)
         self.board = {
-            "blue": {
+            0: {
                 "home": self.board_numbers[64:68],
                 "start": self.board_numbers[0],
                 "finish": self.board_numbers[68:72],
             },
-            "green": {
+            1: {
                 "home": self.board_numbers[72:76],
                 "start": self.board_numbers[16],
                 "finish": self.board_numbers[76:80],
             },
-            "yellow": {
+            2: {
                 "home": self.board_numbers[88:92],
                 "start": self.board_numbers[48],
                 "finish": self.board_numbers[92:96],
             },
-            "red": {
+            3: {
                 "home": self.board_numbers[80:84],
                 "start": self.board_numbers[32],
                 "finish": self.board_numbers[84:88],
             },
         }
-        self.players = ["blue", "green", "yellow", "red"]
+        self.players = range(0,4)
         self.player_hands = {player: [] for player in self.players}  # Cards for each player
 
     def deal_cards(self, LIST_CARD):
@@ -135,15 +135,39 @@ class Dog(Game):
 
         return self.board.get(color, None)
 
+    def swap_card_with_teammate(self, player, card_to_give):
+        """Allows a player to swap one card with their teammate."""
+        if player not in self.teams:
+            print(f"{player} is not part of a team.")
+            return
+        teammate = self.teams[player]
+        if card_to_give not in self.player_hands[player]:
+            print(f"{player} does not have the card {card_to_give}.")
+            return
+
+        print(f"{player} is swapping {card_to_give} with {teammate}.")
+
+        # Simulate teammate selecting a card to give
+        card_to_receive = random.choice(self.player_hands[teammate])
+        self.player_hands[player].remove(card_to_give)
+        self.player_hands[teammate].remove(card_to_receive)
+
+        self.player_hands[player].append(card_to_receive)
+        self.player_hands[teammate].append(card_to_give)
+
+        print(f"After swapping:")
+        print(f"  {player}: {self.player_hands[player]}")
+        print(f"  {teammate}: {self.player_hands[teammate]}")
+
 
 
     def set_state(self, state: GameState) -> None:
-        """ Set the game to a given state """
-        pass
+        self.state = state
+        self.state.phase = GamePhase.RUNNING
 
     def get_state(self) -> GameState:
         """ Get the complete, unmasked game state """
-        pass
+        return self.state
 
     def print_state(self) -> None:
         """ Print the current game state """
@@ -151,7 +175,8 @@ class Dog(Game):
 
     def get_list_action(self) -> List[Action]:
         """ Get a list of possible actions for the active player """
-        pass
+        actions = []
+        player = self.players[self.idx_player_active]
 
     def apply_action(self, action: Action) -> None:
         """ Apply the given action to the game """
