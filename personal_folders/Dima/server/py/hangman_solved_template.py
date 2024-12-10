@@ -3,7 +3,7 @@ import string
 import random
 from enum import Enum
 from pydantic import BaseModel, field_validator
-from game import Game, Player
+from server.py.game import Game, Player
 
 
 class GuessLetterAction(BaseModel):
@@ -65,11 +65,13 @@ class Hangman(Game):
         self.state = HangmanGameState()
 
     def get_state(self) -> HangmanGameState:
+        print('get_state', self.get_state)
         return self.state
 
     def set_state(self, state: HangmanGameState) -> None:
         self.state = state
         self.state.phase = GamePhase.RUNNING
+        print('set_state', self.set_state)
 
     def print_state(self) -> None:
         state = self.state.get_masked_state()
@@ -101,6 +103,7 @@ class Hangman(Game):
             print(f" |    {left_leg} {right_leg}")
             print(" |_")
         print(f"Incorrect guesses: {' '.join(self.state.incorrect_guesses)}")
+        print(f"Guesses: {' '.join(self.state.guesses)}")
         if self.state.phase == GamePhase.FINISHED:
             print(f"Solution: {self.state.word_to_guess}")
 
@@ -155,3 +158,41 @@ if __name__ == "__main__":
         game.apply_action(act)
         game.print_state()
         print("\n---------------------\n")
+
+# if __name__ == "__main__":
+#
+#     # Initialize the Hangman game
+#     game = Hangman()
+#
+#     # Set up a new game state
+#     game_state = HangmanGameState(
+#         word_to_guess="DevOps".upper(), # Word to guess
+#         phase=GamePhase.RUNNING,         # Phase set to RUNNING
+#         guesses=[],                      # No correct guesses yet
+#         incorrect_guesses=[]             # No incorrect guesses yet
+#     )
+#
+#     game.set_state(game_state)  # Initialize the game state
+#     i = 0
+#     print(i)
+#     game.print_state()
+#     print('game_state', game_state)
+#     # Start taking guesses in a loop until the game ends
+#     while game.get_state().phase != GamePhase.FINISHED:
+#         i +=1
+#         print('i', i)
+        # Display available actions
+        # actions = game.get_list_action()
+        # print("\nAvailable actions:", [action.letter for action in actions])
+
+        # # Take input from the player
+        # guess = input("Enter your guess: ").upper()
+
+        # # Find the action matching the input
+        # selected_action = next((action for action in actions if action.letter == guess), None)
+
+        # if selected_action:
+        #     game.apply_action(selected_action)
+        #     game.print_state()  # Update and print game state after the guess
+        # else:
+        #     print(f"Invalid guess '{guess}'. Try again.")
