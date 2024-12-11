@@ -1,7 +1,6 @@
 from server.py.game import Game, Player
 from typing import List, Optional, ClassVar
 from pydantic import BaseModel
-from enum import Enum
 import random
 
 
