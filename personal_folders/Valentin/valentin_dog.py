@@ -1,6 +1,8 @@
+# runcmd: cd ../.. & venv\Scripts\python server/py/dog_template.py
 from server.py.game import Game, Player
 from typing import List, Optional, ClassVar
 from pydantic import BaseModel
+from enum import Enum
 import random
 
 
@@ -87,15 +89,85 @@ class GameState(BaseModel):
 class Dog(Game):
 
     def __init__(self) -> None:
-        pass
+        """ Game initialization (set_state call not necessary, we expect 4 players) """
+
+        self.board_numbers = range(0, 96)
+        self.board = {
+            "blue": {
+                "home": self.board_numbers[64:68],
+                "start": self.board_numbers[0],
+                "finish": self.board_numbers[68:72],
+            },
+            "green": {
+                "home": self.board_numbers[72:76],
+                "start": self.board_numbers[16],
+                "finish": self.board_numbers[76:80],
+            },
+            "red": {
+                "home": self.board_numbers[80:84],
+                "start": self.board_numbers[32],
+                "finish": self.board_numbers[84:88],
+            },
+            "yellow": {
+                "home": self.board_numbers[88:92],
+                "start": self.board_numbers[48],
+                "finish": self.board_numbers[92:96],
+            },
+        }
+        self.list_player = ["blue", "green", "red", "yellow"]
+        self.player_hands = {player: [] for player in self.list_player}  # Cards for each player
+
+    def deal_cards(self, LIST_CARD):
+        """Deals cards to each player for five rounds."""
+        rounds = range(1, 6)
+        cards_per_round = {1: 6, 2: 5, 3: 4, 4: 3, 5: 2}
+
+        for round_number in rounds:
+            deal_count = cards_per_round[round_number]
+            print(f"Round {round_number}:")
+            for player in self.players:
+                # Deal cards for the current player in this round
+                dealt_cards = random.sample(LIST_CARD, deal_count)
+                self.player_hands[player] = dealt_cards
+                print(f"  {player}: {self.player_hands[player]}")
+
+    def get_player_positions(self, color: str) -> dict:
+
+        return self.board.get(color, None)
+
+    def swap_card_with_teammate(self, player, card_to_give):
+        """Allows a player to swap one card with their teammate."""
+        if player not in self.teams:
+            print(f"{player} is not part of a team.")
+            return
+        teammate = self.teams[player]
+        if card_to_give not in self.player_hands[player]:
+            print(f"{player} does not have the card {card_to_give}.")
+            return
+
+        print(f"{player} is swapping {card_to_give} with {teammate}.")
+
+        # Simulate teammate selecting a card to give
+        card_to_receive = random.choice(self.player_hands[teammate])
+        self.player_hands[player].remove(card_to_give)
+        self.player_hands[teammate].remove(card_to_receive)
+
+        self.player_hands[player].append(card_to_receive)
+        self.player_hands[teammate].append(card_to_give)
+
+        print(f"After swapping:")
+        print(f"  {player}: {self.player_hands[player]}")
+        print(f"  {teammate}: {self.player_hands[teammate]}")
+
+
 
     def set_state(self, state: GameState) -> None:
-        """ Set the game to a given state """
-        pass
+        self.state = state
+        self.state.phase = GamePhase.RUNNING
 
     def get_state(self) -> GameState:
         """ Get the complete, unmasked game state """
-        pass
+        return self.state
 
     def print_state(self) -> None:
         """ Print the current game state """
@@ -103,7 +175,8 @@ class Dog(Game):
 
     def get_list_action(self) -> List[Action]:
         """ Get a list of possible actions for the active player """
-        pass
+        actions = []
+        player = self.players[self.idx_player_active]
 
     def apply_action(self, action: Action) -> None:
         """ Apply the given action to the game """
@@ -116,7 +189,7 @@ class Dog(Game):
 
 class RandomPlayer(Player):
 
-    def select_action(self, state: GameState, actions: List[Action]) -> Action:
+    def select_action(self, state: GameState, actions: List[Action]) -> Optional[Action]:
         """ Given masked game state and possible actions, select the next action """
         if len(actions) > 0:
             return random.choice(actions)
@@ -124,5 +197,11 @@ class RandomPlayer(Player):
 
 
 if __name__ == '__main__':
-    game = Dog()
 
+    game = Dog()
+    game_state_cards = GameState.LIST_CARD
+    game.deal_cards(game_state_cards)
+
+
+    red_positions = game.get_player_positions("red")
+    print("Red player positions:", red_positions)
