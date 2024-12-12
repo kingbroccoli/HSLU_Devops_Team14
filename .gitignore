@@ -1,2 +1,19 @@
-.DS_Store
+# Ignore virtual environments
+.venv/
+venv/
+env/
+
+# Ignore compiled files
+*.pyc
+__pycache__/
+
+# Ignore local IDE configurations
+.vscode/
 .idea/
+
+# Ignore log files
+*.log
+
+# Other specific files
+.DS_Store
+
