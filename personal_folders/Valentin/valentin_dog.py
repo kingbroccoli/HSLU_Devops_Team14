@@ -85,12 +85,147 @@ class GameState(BaseModel):
     list_id_card_discard: List[Card]   # list of cards discarded
     card_active: Optional[Card]        # active card (for 7 and JKR with sequence of actions)
 
+class Dog(Game):
 
+    def __init__(self) -> None:
+        """Game initialization."""
+        # Define the initial game state with a placeholder for players
+        initial_state = GameState(
+            cnt_player=4,
+            phase=GamePhase.SETUP,
+            cnt_round=0,
+            bool_game_finished=False,
+            bool_card_exchanged=False,
+            idx_player_started=0,
+            idx_player_active=0,
+            list_player=[],  # Placeholder, to be updated later
+            list_id_card_draw=[],
+            list_id_card_discard=[],
+            card_active=None
+        )
+
+        # Shuffle the full card deck to create the draw pile
+        shuffled_deck = random.sample(GameState.LIST_CARD, len(GameState.LIST_CARD))
+
+        # Define the game board with positions
+        self.board_numbers = range(0, 96)
+        self.board = {
+            "blue": {
+                "kennel": self.board_numbers[64:68],
+                "start": self.board_numbers[0],
+                "finish": self.board_numbers[68:72],
+            },
+            "green": {
+                "kennel": self.board_numbers[72:76],
+                "start": self.board_numbers[16],
+                "finish": self.board_numbers[76:80],
+            },
+            "red": {
+                "kennel": self.board_numbers[80:84],
+                "start": self.board_numbers[32],
+                "finish": self.board_numbers[84:88],
+            },
+            "yellow": {
+                "kennel": self.board_numbers[88:92],
+                "start": self.board_numbers[48],
+                "finish": self.board_numbers[92:96],
+            },
+        }
+
+
+        # Set the initial game state temporarily
+        self.set_state(initial_state)
+
+        # Initialize players and assign marbles based on the board configuration
+        colors = ["blue", "green", "red", "yellow"]
+        players = []
+        for i, color in enumerate(colors):
+            marbles = [
+                Marble(pos=str(position), is_save=False)
+                for position in self.board[color]["kennel"]
+            ]
+            players.append(PlayerState(name=f"Player {i + 1}", list_card=[], list_marble=marbles))
+
+        # Update the game state with the initialized players
+        self.state.list_player = players
+        self.state.list_id_card_draw = shuffled_deck
+
+    def deal_cards(self) -> None:
+        """Deal cards to players based on the round count, continue until phase == FINISHED."""
+        if self.state.phase == GamePhase.FINISHED:
+            print("Game is finished. No more cards to deal.")
+            return
+
+        # Number of cards to deal per round
+        cards_per_round = {1: 6, 2: 5, 3: 4, 4: 3, 5: 2}
+
+        # Determine the round for card distribution
+        effective_round = (self.state.cnt_round - 1) % 5 + 1  # Map to 1, 2, 3, 4, 5
+        deal_count = cards_per_round.get(effective_round, 0)
+        print(f"Dealing {deal_count} cards for Round {self.state.cnt_round} (Effective Round {effective_round}).")
+
+        for player in self.state.list_player:
+            # Check if enough cards are available in the draw pile
+            if len(self.state.list_id_card_draw) < deal_count:
+                print("Re-shuffling discard pile into draw pile.")
+                self.state.list_id_card_draw.extend(self.state.list_id_card_discard)
+                random.shuffle(self.state.list_id_card_draw)
+                self.state.list_id_card_discard.clear()
+
+            # Deal cards to the player
+            dealt_cards = self.state.list_id_card_draw[:deal_count]
+            self.state.list_id_card_draw = self.state.list_id_card_draw[deal_count:]
+            player.list_card.extend(dealt_cards)
+
+            print(f"Player {player.name} was dealt: {dealt_cards}")
+
+        # Increment the overall round counter
+        self.state.cnt_round += 1
+
+    def set_state(self, state: GameState) -> None:
+        """Set the game to a given state."""
+        self.state = state
+
+    def get_state(self) -> GameState:
+        """Get the complete, unmasked game state."""
+        return self.state
+
+    def print_state(self) -> None:
+        """ Print the current game state """
+        print(self.state)
+
+    def get_list_action(self) -> List[Action]:
+        """ Get a list of possible actions for the active player """
+        pass
+
+    def apply_action(self, action: Action) -> None:
+        """ Apply the given action to the game """
+        pass
+
+    def get_player_view(self, idx_player: int) -> GameState:
+        """ Get the masked state for the active player (e.g. the oppontent's cards are face down)"""
+        pass
+'''
 class Dog(Game):
 
     def __init__(self) -> None:
         """ Game initialization (set_state call not necessary, we expect 4 players) """
-
+        # Initialize the game state
+        self.state = GameState(
+            phase=GamePhase.SETUP,  # Set initial phase as SETUP
+            cnt_round=0,  # Initial round
+            bool_game_finished=False,
+            bool_card_exchanged=False,
+            idx_player_started=0,
+            idx_player_active=0,
+            list_player=[
+                PlayerState(name=f"Player {i + 1}", list_card=[], list_marble=[])
+                for i in range(4)  # Initialize for 4 players
+            ],
+            list_card_draw=GameState.LIST_CARD.copy(),
+            list_card_discard=[],
+            card_active=None
+        )
         self.board_numbers = range(0, 96)
         self.board = {
             "blue": {
@@ -119,18 +254,39 @@ class Dog(Game):
 
     def deal_cards(self, LIST_CARD):
         """Deals cards to each player for five rounds."""
-        if self.state.phase == GamePhase.RUNNING:
-            rounds = range(1, 6)
-            cards_per_round = {1: 6, 2: 5, 3: 4, 4: 3, 5: 2}
+        if self.state.phase != GamePhase.RUNNING:
+            return  # Only deal cards during the RUNNING phase
 
-            for round_number in rounds:
-                deal_count = cards_per_round[round_number]
-                print(f"Round {round_number}:")
-                for player in self.list_player:
-                 # Deal cards for the current player in this round
-                    dealt_cards = random.sample(LIST_CARD, deal_count)
-                    self.player_hands[player] = dealt_cards
-                    print(f"  {player}: {self.player_hands[player]}")
+        # Number of cards to deal per round
+        cards_per_round = {1: 6, 2: 5, 3: 4, 4: 3, 5: 2}
+
+        # Deal cards for the current round
+        deal_count = cards_per_round.get(self.state.cnt_round, 6)  # Default to 6 if round isn't specified
+        print(f"Dealing {deal_count} cards for Round {self.state.cnt_round}")
+
+        for player in self.state.list_player:
+            # Ensure there are enough cards in the draw pile
+            if len(self.state.list_card_draw) < deal_count:
+                # Re-shuffle discarded cards back into the draw pile
+                print("Re-shuffling discard pile into draw pile.")
+                self.state.list_card_draw = random.sample(
+                    self.state.list_card_discard, len(self.state.list_card_discard)
+                )
+                self.state.list_card_discard.clear()
+
+            # Draw cards from the draw pile
+            dealt_cards = self.state.list_card_draw[:deal_count]
+            self.state.list_card_draw = self.state.list_card_draw[deal_count:]
+
+            # Update the player's card list
+            player.list_card.extend(dealt_cards)
+
+            print(f"Player {player.name} was dealt: {dealt_cards}")
+
+        # Increment round counter and reset after 5 rounds
+        self.state.cnt_round += 1
+        if self.state.cnt_round > 5:
+            self.state.cnt_round = 1  # Reset rounds to 1 after completing 5
 
     def get_player_positions(self, color: str) -> dict:
 
@@ -163,12 +319,11 @@ class Dog(Game):
 
 
     def set_state(self, state: GameState) -> None:
-        self.state = state
-        self.state.phase = GamePhase.RUNNING
+        pass
 
     def get_state(self) -> GameState:
         """ Get the complete, unmasked game state """
-        return self.state
+        pass
 
     def print_state(self) -> None:
         """ Print the current game state """
@@ -176,8 +331,7 @@ class Dog(Game):
 
     def get_list_action(self) -> List[Action]:
         """ Get a list of possible actions for the active player """
-        actions = []
-        player = self.players[self.idx_player_active]
+        pass
 
     def apply_action(self, action: Action) -> None:
         """ Apply the given action to the game """
@@ -186,7 +340,7 @@ class Dog(Game):
     def get_player_view(self, idx_player: int) -> GameState:
         """ Get the masked state for the active player (e.g. the oppontent's cards are face down)"""
         pass
-
+'''
 
 class RandomPlayer(Player):
 
@@ -199,10 +353,38 @@ class RandomPlayer(Player):
 
 if __name__ == '__main__':
 
+    # Instantiate the Dog class
     game = Dog()
-    game_state_cards = GameState.LIST_CARD
-    game.deal_cards(game_state_cards)
 
+    # Fetch the initialized state
+    game_state = game.get_state()
 
-    red_positions = game.get_player_positions("red")
-    print("Red player positions:", red_positions)
+    # Test the number of players
+    print("Number of Players:", len(game_state.list_player))
+    for idx, player in enumerate(game_state.list_player):
+        print(f"Player {idx + 1} Marbles:", player.list_marble)
+
+    # Test the card deck
+    print("\nNumber of Cards in Draw Pile:", len(game_state.list_id_card_draw))
+    print("Sample Cards in Draw Pile:", game_state.list_id_card_draw[:5])  # Display first 5 cards
+
+    # Test the board setup
+    print("\nGame Board Configuration:")
+    for color, positions in game.board.items():
+        print(f"{color.capitalize()} Kennel: {positions['kennel']}")
+        print(f"{color.capitalize()} Start: {positions['start']}")
+        print(f"{color.capitalize()} Finish: {positions['finish']}")
+
+    # Test phase and round
+    print("\nInitial Game Phase:", game_state.phase)
+    print("Initial Round Count:", game_state.cnt_round)
+
+ # Start the game
+    game.state.phase = GamePhase.RUNNING
+
+    for _ in range(20):
+        game.deal_cards()
+
+    # Change the phase to FINISHED and test
+    game.state.phase = GamePhase.FINISHED
+    game.deal_cards()
