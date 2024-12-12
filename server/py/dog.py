@@ -116,6 +116,58 @@ class Dog(Game):
         """ Get the masked state for the active player (e.g. the oppontent's cards are face down)"""
         pass
 
+######## added part Beat
+
+    def get_list_action(self) -> List[Action]:
+        """ Get a list of possible actions for the active player """
+        # Placeholder logic for possible actions
+        active_player = self.state.list_player[self.state.idx_player_active]
+        actions = []
+        for card in active_player.list_card:
+            for marble in active_player.list_marble:
+                if marble.is_safe:
+                    actions.append(Action(card=card, pos_from=marble.pos, pos_to=marble.pos + 1))
+        return actions
+
+    def apply_action(self, action: Action) -> None:
+        """ Apply the given action to the game """
+        active_player = self.state.list_player[self.state.idx_player_active]
+        marble = next((m for m in active_player.list_marble if m.pos == action.pos_from), None)
+        if not marble:
+            print("Invalid action: Marble not found.")
+            return
+
+        if action.card.rank == '2':
+            marble.move_forward(self.state, 2)
+        elif action.card.rank == '3':
+            marble.move_forward(self.state, 3)
+        elif action.card.rank == '4':
+            marble.move_forward(self.state, 4)
+        elif action.card.rank == '5':
+            marble.move_forward(self.state, 5)
+        elif action.card.rank == '6':
+            marble.move_forward(self.state, 6)
+        elif action.card.rank == '7':
+            marble.move_forward(self.state, 7)  # Simplified for now
+        elif action.card.rank == '8':
+            marble.move_forward(self.state, 8)
+        elif action.card.rank == '9':
+            marble.move_forward(self.state, 9)
+        elif action.card.rank == '10':
+            marble.move_forward(self.state, 10)
+        elif action.card.rank == 'J':
+            pass  # Implement swap logic
+        elif action.card.rank == 'Q':
+            marble.move_forward(self.state, 12)
+        elif action.card.rank == 'K':
+            marble.enter_play()
+        elif action.card.rank == 'A':
+            marble.move_forward(self.state, 1)  # Implement "1 or 11"
+        elif action.card.rank == 'JKR':
+            pass  # Implement Joker logic
+
+#### Part Beat
+
 
 class RandomPlayer(Player):
 
