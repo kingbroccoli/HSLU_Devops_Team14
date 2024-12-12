@@ -145,19 +145,19 @@ class StructuredPlayer(Player):
         return actions[0]
 
 
-if __name__ == "__main__":
-
-    game = Hangman()
-    game_state = HangmanGameState(word_to_guess='DevOps')
-    game.set_state(game_state)
-    player = StructuredPlayer()
-    for _ in range(26):
-        if game.state.phase == GamePhase.FINISHED:
-            break
-        act = player.select_action(game.get_state(), game.get_list_action())
-        game.apply_action(act)
-        game.print_state()
-        print("\n---------------------\n")
+# if __name__ == "__main__":
+#
+#     game = Hangman()
+#     game_state = HangmanGameState(word_to_guess='DevOps')
+#     game.set_state(game_state)
+#     player = StructuredPlayer()
+#     for _ in range(26):
+#         if game.state.phase == GamePhase.FINISHED:
+#             break
+#         act = player.select_action(game.get_state(), game.get_list_action())
+#         game.apply_action(act)
+#         game.print_state()
+#         print("\n---------------------\n")
 
 # if __name__ == "__main__":
 #
