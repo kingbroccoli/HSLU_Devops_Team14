@@ -1,3 +1,4 @@
+# runcmd: cd ../.. & venv\Scripts\python server/py/dog_template.py
 from server.py.game import Game, Player
 from typing import List, Optional, ClassVar
 from pydantic import BaseModel
@@ -88,6 +89,7 @@ class GameState(BaseModel):
 class Dog(Game):
 
     def __init__(self) -> None:
+        """ Game initialization (set_state call not necessary, we expect 4 players) """
         pass
 
     def set_state(self, state: GameState) -> None:
@@ -117,7 +119,7 @@ class Dog(Game):
 
 class RandomPlayer(Player):
 
-    def select_action(self, state: GameState, actions: List[Action]) -> Action:
+    def select_action(self, state: GameState, actions: List[Action]) -> Optional[Action]:
         """ Given masked game state and possible actions, select the next action """
         if len(actions) > 0:
             return random.choice(actions)
@@ -125,5 +127,6 @@ class RandomPlayer(Player):
 
 
 if __name__ == '__main__':
+
     game = Dog()
 
