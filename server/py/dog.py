@@ -220,7 +220,7 @@ class Dog(Game):
         """ Get the masked state for the active player (e.g. the oppontent's cards are face down)"""
         pass
 
-######## added part Beat
+################### added part Beat
 
     def get_list_action(self) -> List[Action]:
         """ Get a list of possible actions for the active player """
@@ -270,7 +270,7 @@ class Dog(Game):
         elif action.card.rank == 'JKR':
             pass  # Implement Joker logic
 
-#### Part Beat
+######################   Part Beat
 
 
 class RandomPlayer(Player):
