@@ -4,7 +4,7 @@ import random
 from enum import Enum
 from pydantic import BaseModel, field_validator
 # from server.py.game import Game, Player
-from game import Game, Player
+from server.py.game import Game, Player
 
 class GuessLetterAction(BaseModel):
     letter: str

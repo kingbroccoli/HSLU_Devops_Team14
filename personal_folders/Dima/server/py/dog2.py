@@ -3,52 +3,7 @@ from pydantic import BaseModel
 from enum import Enum
 import random
 from typing import List, Any
-from abc import ABCMeta, abstractmethod
-
-
-GameState = Any
-GameAction = Any
-
-
-class Game(metaclass=ABCMeta):
-
-    @abstractmethod
-    def set_state(self, state: GameState) -> None:
-        """ Set the game to a given state """
-        pass
-
-    @abstractmethod
-    def get_state(self) -> GameState:
-        """ Get the complete, unmasked game state """
-        pass
-
-    @abstractmethod
-    def print_state(self) -> None:
-        """ Print the current game state """
-        pass
-
-    @abstractmethod
-    def get_list_action(self) -> List[GameAction]:
-        """ Get a list of possible actions for the active player """
-        pass
-
-    @abstractmethod
-    def apply_action(self, action: GameAction) -> None:
-        """ Apply the given action to the game """
-        pass
-
-    @abstractmethod
-    def get_player_view(self, idx_player: int) -> GameState:
-        """ Get the masked state for the active player (e.g. the opponent's cards are face down)"""
-        pass
-
-
-class Player(metaclass=ABCMeta):
-
-    @abstractmethod
-    def select_action(self, state: GameState, actions: List[GameAction]) -> GameAction:
-        """ Given masked game state and possible actions, select the next action """
-        pass
+from server.py.game import Game, Player
 
 
 class GamePhase(str, Enum):
@@ -77,7 +32,7 @@ class Action(BaseModel):
     pos_to: Optional[int] = None
     card_swap: Optional[Card] = None
 
-class DogGameState(BaseModel):
+class GameState(BaseModel):
     cnt_player: int
     phase: GamePhase
     cnt_round: int
@@ -93,7 +48,7 @@ class DogGameState(BaseModel):
 class Dog(Game):
 
     def __init__(self) -> None:
-        self._state: Optional[DogGameState] = None
+        self._state: Optional[GameState] = None
         self.reset()
 
     def reset(self):
@@ -116,7 +71,7 @@ class Dog(Game):
             for p in list_player:
                 p.list_card.append(full_deck.pop())
 
-        self._state = DogGameState(
+        self._state = GameState(
             cnt_player=4,
             phase=GamePhase.RUNNING,
             cnt_round=1,
@@ -130,10 +85,10 @@ class Dog(Game):
             card_active=None
         )
 
-    def set_state(self, state: DogGameState) -> None:
+    def set_state(self, state: GameState) -> None:
         self._state = state
 
-    def get_state(self) -> DogGameState:
+    def get_state(self) -> GameState:
         if self._state is None:
             raise ValueError("Game state has not been initialized.")
         return self._state
@@ -198,13 +153,13 @@ class Dog(Game):
             player.list_card.remove(action.card)
             state.idx_player_active = (state.idx_player_active + 1) % state.cnt_player
 
-    def get_player_view(self, idx_player: int) -> DogGameState:
+    def get_player_view(self, idx_player: int) -> GameState:
         if self._state is None:
             raise ValueError("Game state has not been initialized.")
         return self._state
 
 class RandomPlayer(Player):
-    def select_action(self, state: DogGameState, actions: List[Action]) -> Optional[Action]:
+    def select_action(self, state: GameState, actions: List[Action]) -> Optional[Action]:
         if actions:
             return random.choice(actions)
         return None
