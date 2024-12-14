@@ -11,7 +11,7 @@ import traceback
 from pydantic import BaseModel
 from typing import List, Optional, Dict
 
-from server.py.dog import Card, Marble, PlayerState, Action, GameState, GamePhase
+from server.py.dog2 import (Card, Marble, PlayerState, Action, GameState, GamePhase)
 
 class DogBenchmark(benchmark.Benchmark):
 
