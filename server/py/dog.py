@@ -2,8 +2,9 @@ from typing import List, Optional
 from pydantic import BaseModel
 from enum import Enum
 import random
-from typing import List, Any
+
 from server.py.game import Game, Player
+
 
 
 class GamePhase(str, Enum):
