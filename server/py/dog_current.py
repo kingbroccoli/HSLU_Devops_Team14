@@ -42,7 +42,8 @@ class GameState(BaseModel):
         '2', '3', '4', '5', '6', '7', '8', '9', '10',      # 13 ranks + Joker
         'J', 'Q', 'K', 'A', 'JKR'
     ]
-    LIST_CARD: ClassVar[List[Card]] = [
+    LIST_CARD: ClassVar[Lis
+    t[Card]] = [
         # 2: Move 2 spots forward
         Card(suit='♠', rank='2'), Card(suit='♥', rank='2'), Card(suit='♦', rank='2'), Card(suit='♣', rank='2'),
         # 3: Move 3 spots forward
