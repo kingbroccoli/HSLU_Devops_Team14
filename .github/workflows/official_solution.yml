@@ -1,0 +1,21 @@
+name: Code Style
+
+on:
+  push:
+    branches: 'main'  # Trigger workflow only on pushes to 'main'
+
+jobs:
+  code-style:  # Name of the job
+    runs-on: ubuntu-latest  # Specifies the environment to run the job
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4  # Fetches the repository code
+
+      - name: Install pylint and mypy
+        run: pip install pylint mypy  # Installs the required tools
+
+      - name: Run pylint
+        run: python3 -m pylint .  # Runs Pylint on the entire repository
+
+      - name: Run mypy
+        run: python3 -m mypy .  # Runs MyPy on the entire repository

@@ -73,23 +73,56 @@ class GameState(BaseModel):
         Card(suit='', rank='JKR'), Card(suit='', rank='JKR'), Card(suit='', rank='JKR')
     ] * 2
 
-    cnt_player: int = 4                # number of players (must be 4)
-    phase: GamePhase = GamePhase.SETUP # current phase of the game
-    cnt_round: int = 1                   # current round
-    bool_card_exchanged: bool = 0         # true if cards was exchanged in round
-    idx_player_started: int = 0           # index of player that started the round
-    idx_player_active: int = 0            # index of active player in round
-    list_player: List[PlayerState] = []     # list of players
-    list_card_draw: List[Card] = []      # list of cards to draw
-    list_card_discard: List[Card] = []      # list of cards discarded
-    card_active: Optional[Card]        # active card (for 7 and JKR with sequence of actions)
+
+    # cnt_player: int = 4                # number of players (must be 4)
+    # phase: GamePhase  # current phase of the game
+    # cnt_round: int                    # current round
+    # bool_card_exchanged: bool = 0         # true if cards was exchanged in round
+    # idx_player_started: int = 0           # index of player that started the round
+    # idx_player_active: int = 0            # index of active player in round
+    # list_player: List[PlayerState] = []     # list of players
+    # list_card_draw: List[Card] = LIST_CARD      # list of cards to draw
+    # list_card_discard: List[Card] = []      # list of cards discarded
+    # card_active: Optional[Card]        # active card (for 7 and JKR with sequence of actions)
+    def __str__(self) -> str:
+        player_states = "\n".join(
+            f"Player {i + 1} ({player.name}): Cards: {len(player.list_card)}, Marbles: {len(player.list_marble)}"
+            for i, player in enumerate(self.list_player)
+        )
+        return (
+            f"Game Phase: {self.phase}\n"
+            f"Round: {self.cnt_round}\n" # pylint:xf disable=no-member
+            f"Active Player: {self.idx_player_active + 1}\n"
+            f"Players:\n{player_states}\n"
+            f"Cards to Draw: {len(self.list_card_draw)}\n"
+            f"Cards Discarded: {len(self.list_card_discard)}\n"
+            f"Active Card: {self.card_active}\n"
+        )
 
 
 class Dog(Game):
 
     def __init__(self) -> None:
         """ Game initialization (set_state call not necessary, we expect 4 players) """
-        self.state = GamePhase.RUNNING
+        self.__init__()
+        self.state = GameState(  # type: ignore
+            phase=GamePhase.RUNNING,
+            cnt_round=1,
+            bool_game_finished=False,
+            bool_card_exchanged=False,
+            idx_player_started=0,
+            idx_player_active=0,
+            list_player=[PlayerState(
+                name=f"Player {i + 1}", list_card=[], list_marble=[]) for i in range(4)],
+            list_card_draw=GameState.LIST_CARD.copy(),
+            list_card_discard=[],
+            card_active=None
+
+        )
+        random.shuffle(self.state.list_card_draw)
+        self.deal_cards()
+        self._set_marbles()
+
 
     def set_state(self, state: GameState) -> None:
         self.state = state
@@ -115,6 +148,21 @@ class Dog(Game):
         """ Get the masked state for the active player (e.g. the oppontent's cards are face down)"""
         pass
 
+    def __str__(self) -> str:
+        player_states = "\n".join(
+            f"Player {i + 1} ({player.name}): Cards: {len(player.list_card)}, Marbles: {len(player.list_marble)}"
+            for i, player in enumerate(self.list_player)
+        )
+        return (
+            f"Game Phase: {self.phase}\n"
+            f"Round: {self.cnt_round}\n" # pylint: disable=no-member
+            f"Active Player: {self.idx_player_active + 1}\n"
+            f"Players:\n{player_states}\n"
+            f"Cards to Draw: {len(self.list_card_draw)}\n"
+            f"Cards Discarded: {len(self.list_card_discard)}\n"
+            f"Active Card: {self.card_active}\n"
+        )
+
 
 class RandomPlayer(Player):
 
@@ -133,5 +181,5 @@ if __name__ == '__main__':
     red = PlayerState(name = 'red')
     yellow = PlayerState(name = 'yellow')
     game_state = GameState(list_player=[blue, green, red, yellow], card_active=None)    # list of cards discarded)
-    game.set_state(game_state)
+    # game.set_state(game_state)
     player = RandomPlayer()

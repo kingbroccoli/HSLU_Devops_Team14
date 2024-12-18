@@ -1,0 +1,32 @@
+name: Lint Code with Pylint and MyPy
+
+on:
+  push:
+    branches:
+      - main  # Run the workflow only on pushes to the main branch
+
+jobs:
+  lint:
+    name: Run Pylint and MyPy
+    runs-on: ubuntu-latest  # Use GitHub's Ubuntu runner
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4  # Fetch the repository code
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'  # Use Python 3.10
+
+      - name: Install Dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install pylint mypy  # Install Pylint and MyPy
+
+      - name: Run Pylint
+        run: |
+          pylint .  # Run linting on all Python files
+
+      - name: Run MyPy
+        run: |
+          mypy .  # Run type checking on all Python files

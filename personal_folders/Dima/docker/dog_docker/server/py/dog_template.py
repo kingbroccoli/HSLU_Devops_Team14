@@ -120,7 +120,7 @@ class RandomPlayer(Player):
     def select_action(self, state: GameState, actions: List[Action]) -> Optional[Action]:
         """ Given masked game state and possible actions, select the next action """
         if len(actions) > 0:
-            return random.choice(actions)
+            return random.choice(actions)x
         return None
 
 

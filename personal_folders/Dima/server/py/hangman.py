@@ -1,3 +1,6 @@
+# Example solution to test docker thingies
+
+
 from typing import List, Optional
 import string
 import random
@@ -155,3 +158,39 @@ if __name__ == "__main__":
         game.apply_action(act)
         game.print_state()
         print("\n---------------------\n")
+
+# Alternative main section where you need to input the guesses in the command line.
+
+# if __name__ == "__main__":
+#
+#     # Initialize the Hangman game
+#     game = Hangman()
+#
+#     # Set up a new game state
+#     game_state = HangmanGameState(
+#         word_to_guess="DevOpsp".upper(), # Word to guess
+#         phase=GamePhase.RUNNING,         # Phase set to RUNNING
+#         guesses=[],                      # No correct guesses yet
+#         incorrect_guesses=[]             # No incorrect guesses yet
+#     )
+#
+#     game.set_state(game_state)  # Initialize the game state
+#
+#     game.print_state()
+#     # Start taking guesses in a loop until the game ends
+#     while game.get_state().phase != GamePhase.FINISHED:
+#         # Display available actions
+#         actions = game.get_list_action()
+#         print("\nAvailable actions:", [action.letter for action in actions])
+#
+#         # Take input from the player
+#         guess = input("Enter your guess: ").upper()
+#
+#         # Find the action matching the input
+#         selected_action = next((action for action in actions if action.letter == guess), None)
+#
+#         if selected_action:
+#             game.apply_action(selected_action)
+#             game.print_state()  # Update and print game state after the guess
+#         else:
+#             print(f"Invalid guess '{guess}'. Try again.")
