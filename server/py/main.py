@@ -8,20 +8,44 @@ import asyncio
 
 import server.py.hangman as hangman
 import server.py.battleship as battleship
+import server.py.dog as dog
 
 import random
 
 app = FastAPI()
 
-app.mount("/inc/static", StaticFiles(directory="server/inc/static"), name="static")
+import os
 
-templates = Jinja2Templates(directory="server/inc/templates")
+# Static Directory Setup
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Up to 'server'
+STATIC_DIR = os.path.join(BASE_DIR, "inc/static")
 
+# Debug: Print the static directory and individual file paths
+print("Static Directory Path:", STATIC_DIR)
+print("File Exists (devops.png):", os.path.exists(os.path.join(STATIC_DIR, "img/devops.png")))
+print("File Exists (jquery):", os.path.exists(os.path.join(STATIC_DIR, "lib/jquery/jquery-3.7.1.min.js")))
+print("File Exists (game.js):", os.path.exists(os.path.join(STATIC_DIR, "game/dog/js/game.js")))
+
+app.mount("/inc/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+
+# Template Directory Setup
+TEMPLATE_DIR = os.path.join(BASE_DIR, "inc/templates")
+print("Resolved Template Directory:", TEMPLATE_DIR)
+print("Final Resolved Template Path:", os.path.join(TEMPLATE_DIR, "game/dog/simulation.html"))
+print("Template Exists:", os.path.exists(os.path.join(TEMPLATE_DIR, "game/dog/simulation.html")))
+templates = Jinja2Templates(directory=TEMPLATE_DIR)
 
 @app.get("/", response_class=HTMLResponse)
 async def get(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+@app.get("/dog/simulation/", response_class=HTMLResponse)
+async def dog_simulation(request: Request):
+    return templates.TemplateResponse("game/dog/simulation.html", {"request": request})
+
+print("Final Resolved Template Path:", os.path.join(TEMPLATE_DIR, "game/dog/simulation.html"))
+print("Template Exists:", os.path.exists(os.path.join(TEMPLATE_DIR, "game/dog/simulation.html")))
 
 # ----- Hangman -----
 
@@ -261,8 +285,31 @@ async def dog_simulation_ws(websocket: WebSocket):
     await websocket.accept()
 
     try:
+        game = dog.Dog()
+        player = dog.RandomPlayer()
 
-        pass
+        while True:
+
+            state = game.get_state()
+            list_action = game.get_list_action()
+            action = None
+            if len(list_action) > 0:
+                action = player.select_action(state, list_action)
+
+            dict_state = state.model_dump()
+            dict_state['list_action'] = []
+            dict_state['selected_action'] = None if action is None else action.model_dump()
+            data = {'type': 'update', 'state': dict_state}
+            await websocket.send_json(data)
+
+            if state.phase == dog.GamePhase.FINISHED:
+                break
+
+            data = await websocket.receive_json()
+
+            if data['type'] == 'action':
+                action = dog.Action.model_validate(data['action'])
+                game.apply_action(action)
 
     except WebSocketDisconnect:
         print('DISCONNECTED')
@@ -291,7 +338,20 @@ async def dog_random_player_ws(websocket: WebSocket):
 
     try:
 
-        pass
+        game = dog.Dog()
+        player = dog.RandomPlayer()
+
+        while True:
+
+            state = game.get_state()
+            if state.phase == dog.GamePhase.FINISHED:
+                break
+
+            list_action = game.get_list_action()
+            action = player.select_action(state, list_action)
+            if action is not None:
+                await asyncio.sleep(1)
+            game.apply_action(action)  # type: ignore
 
     except WebSocketDisconnect:
         print('DISCONNECTED')
