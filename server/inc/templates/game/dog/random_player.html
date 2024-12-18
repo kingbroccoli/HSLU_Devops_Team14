@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dog - Random Player</title>
+    <script src="/inc/static/lib/jquery/jquery-3.7.1.min.js"></script>
+    <script src="/inc/static/game/dog/js/random_player.js"></script>
+    <link href="/inc/static/game/dog/css/game.css" rel="stylesheet">
+</head>
+<body>
+    <canvas id="board"></canvas>
+    <script>
+        $(function(){
+            console.log("Random Player page loaded.");
+
+            var simulation = new Simulation({
+                'ws_endpoint': '/dog/random_player/ws',
+                'delay_millis': 100,
+                'game_config': {
+                    'canvas_id': 'board',
+                    'img_path': '/inc/static/game/dog/img/',
+                    'debug': true
+                }
+            });
+        });
+    </script>
+</body>
+</html>
