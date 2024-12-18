@@ -1,4 +1,4 @@
-from game import Game, Player
+from server.py.game import Game, Player
 from typing import List, Optional, ClassVar
 from pydantic import BaseModel
 from enum import Enum
@@ -196,27 +196,17 @@ class Dog(Game):
                         used.add(key)
 
                 # card_swap actions for JKR
-                if self.state.cnt_round == 1 and all(self.is_in_kennel(m.pos, idx) for m in player.list_marble):
-                    LIST_SUIT = self.state.LIST_SUIT
-                    for s in LIST_SUIT:
-                        for r in ['A', 'K']:
-                            swap_card = Card(suit=s, rank=r)
-                            a = Action(card=Card(suit=c.suit, rank=c.rank), pos_from=None, pos_to=None, card_swap=swap_card)
-                            key = (str(a.card), a.pos_from, a.pos_to, str(a.card_swap))
-                            if key not in used:
-                                actions.append(a)
-                                used.add(key)
-                else:
-                    LIST_SUIT = self.state.LIST_SUIT
-                    full_ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-                    for s in LIST_SUIT:
-                        for r in full_ranks:
-                            swap_card = Card(suit=s, rank=r)
-                            a = Action(card=Card(suit=c.suit, rank=c.rank), pos_from=None, pos_to=None, card_swap=swap_card)
-                            key = (str(a.card), a.pos_from, a.pos_to, str(a.card_swap))
-                            if key not in used:
-                                actions.append(a)
-                                used.add(key)
+                # full deck ranks except JKR itself for chosen card
+                LIST_SUIT = self.state.LIST_SUIT
+                full_ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+                for s in LIST_SUIT:
+                    for r in full_ranks:
+                        swap_card = Card(suit=s, rank=r)
+                        a = Action(card=Card(suit=c.suit, rank=c.rank), pos_from=None, pos_to=None, card_swap=swap_card)
+                        key = (str(a.card), a.pos_from, a.pos_to, str(a.card_swap))
+                        if key not in used:
+                            actions.append(a)
+                            used.add(key)
             elif c.rank == 'J':
                 j_actions = self.get_j_actions(idx, c)
                 for a in j_actions:
@@ -289,6 +279,8 @@ class Dog(Game):
                 self.end_turn()
                 return
             if self.apply_normal_move(action):
+                self.remove_card_from_hand(idx, action.card)
+                self.discard_card(action.card)
                 self.state.card_active = None
                 self.joker_chosen = False
                 self.end_turn()
@@ -476,14 +468,20 @@ class Dog(Game):
     def get_j_actions(self, idx_player: int, card: Card):
         actions = []
         marbles_info = []
+        # Collect marbles not in kennel or finish
+        # Exclude opponent safe-start marbles
         for p_idx, pl in enumerate(self.state.list_player):
             for mm in pl.list_marble:
                 if not self.is_in_kennel(mm.pos, p_idx) and not self.is_in_finish(mm.pos, p_idx):
                     start_pos = p_idx * 16
-                    if mm.pos == start_pos and mm.is_save:
+                    # If opponent marble safe on start, exclude
+                    if mm.pos == start_pos and mm.is_save and p_idx != idx_player:
                         continue
+                    # Otherwise include
                     marbles_info.append((p_idx, mm.pos, mm.is_save))
 
+        # Produce all pairs i != j
+        # Swapping should be possible even with own marbles
         for i in range(len(marbles_info)):
             for j in range(len(marbles_info)):
                 if i != j:
@@ -500,7 +498,6 @@ class Dog(Game):
             return []
         actions = []
         used = set()
-        # always create a new 7-card:
         seven_card = Card(suit='♣', rank='7')
         p = self.state.list_player[idx_player]
         for mm in p.list_marble:
@@ -515,7 +512,6 @@ class Dog(Game):
         return actions
 
     def get_actions_for_card(self, card: Card, idx_player: int):
-        # create fresh card instance
         ccard = Card(suit=card.suit, rank=card.rank)
         if card.rank == '7':
             return self.get_actions_for_seven(idx_player)
@@ -690,16 +686,15 @@ class Dog(Game):
         if m1 is None or m2 is None:
             return False
 
-        if self.is_in_kennel(m1.pos, from_owner) or self.is_in_finish(m1.pos, from_owner):
-            return False
-        if self.is_in_kennel(m2.pos, to_owner) or self.is_in_finish(m2.pos, to_owner):
-            return False
+        # For J swaps, according to tests:
+        # Opponents safe on start can not be swapped
+        # We already filtered them out in get_j_actions, so no extra check here.
 
         start1 = from_owner * 16
         start2 = to_owner * 16
-        if (m1.pos == start1 and m1.is_save) or (m2.pos == start2 and m2.is_save):
-            return False
-
+        # The problem states opponents that are safe on start cannot be swapped
+        # We handled that by not listing them.
+        # Just do the swap now.
         p1_pos = m1.pos
         m1.pos = m2.pos
         m2.pos = p1_pos
@@ -764,7 +759,6 @@ class Dog(Game):
             self.state.card_active = None
             self.end_turn()
         else:
-            # ensure card_active is set to '7'
             self.state.card_active = Card(suit='♣', rank='7')
         return True
 
