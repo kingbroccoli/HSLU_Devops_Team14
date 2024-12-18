@@ -89,23 +89,23 @@ class Dog(Game):
 
     def __init__(self) -> None:
         """Game initialization."""
-        # Define the initial game state with a placeholder for players
-        initial_state = GameState(
+        super().__init__()# Define the initial game state with a placeholder for players
+        self.state = GameState(
             cnt_player=4,
-            phase=GamePhase.SETUP,
-            cnt_round=0,
+            phase=GamePhase.RUNNING,
+            cnt_round=1,
             bool_game_finished=False,
             bool_card_exchanged=False,
             idx_player_started=0,
             idx_player_active=0,
             list_player=[],  # Placeholder, to be updated later
-            list_id_card_draw=[],
+            list_id_card_draw=GameState.LIST_CARD,
             list_id_card_discard=[],
             card_active=None
         )
 
         # Shuffle the full card deck to create the draw pile
-        shuffled_deck = random.sample(GameState.LIST_CARD, len(GameState.LIST_CARD))
+        shuffled_deck = random.sample(self.state.list_id_card_draw, len(GameState.LIST_CARD))
 
         # Define the game board with positions
         self.board_numbers = range(0, 96)
@@ -133,8 +133,7 @@ class Dog(Game):
         }
 
 
-        # Set the initial game state temporarily
-        self.set_state(initial_state)
+
 
         # Initialize players and assign marbles based on the board configuration
         colors = ["blue", "green", "red", "yellow"]
@@ -379,10 +378,7 @@ if __name__ == '__main__':
     print("\nInitial Game Phase:", game_state.phase)
     print("Initial Round Count:", game_state.cnt_round)
 
- # Start the game
-    game.state.phase = GamePhase.RUNNING
-
-    for _ in range(20):
+    for _ in range(8):
         game.deal_cards()
 
     # Change the phase to FINISHED and test
