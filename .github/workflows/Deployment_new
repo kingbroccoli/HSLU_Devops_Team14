@@ -1,0 +1,24 @@
+name: Deploy to Google Cloud
+
+on: push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Check out the repository code
+      - name: Get code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Google Cloud SDK
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: "devops-team-14-863342"
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      # Step 3: Deploy to Google Cloud
+      - name: Deploy to Google Cloud
+        run: |
+          gcloud app deploy --quiet
