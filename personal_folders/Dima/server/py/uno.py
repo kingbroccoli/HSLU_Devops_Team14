@@ -3,22 +3,44 @@
 
 from server.py.game import Game, Player
 from typing import List, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from enum import Enum
 import random
 
 
 class Card(BaseModel):
-    color: Optional[str] = None   # color of the card (see LIST_COLOR)
-    number: Optional[int] = None  # number of the card (if not a symbol card)
-    symbol: Optional[str] = None  # special cards (see LIST_SYMBOL)
+    color: Optional[str] = None
+    number: Optional[int] = None
+    symbol: Optional[str] = None
 
 
 class Action(BaseModel):
-    card: Optional[Card] = None  # the card to play
-    color: Optional[str] = None  # the chosen color to play (for wild cards)
-    draw: Optional[int] = None   # the number of cards to draw for the next player
-    uno: bool = False            # true to announce "UNO" with the second last card
+    card: Optional[Card] = None
+    color: Optional[str] = None
+    draw: Optional[int] = None
+    uno: bool = False
+
+    def __eq__(self, other):
+        if not isinstance(other, Action):
+            return False
+        return (self._sort_key() == other._sort_key())
+
+    def __lt__(self, other):
+        if not isinstance(other, Action):
+            return False
+        return (self._sort_key() < other._sort_key())
+
+    def _sort_key(self):
+        # Create a tuple that can be compared
+        # card fields
+        c_color = self.card.color if self.card and self.card.color is not None else ''
+        c_number = self.card.number if self.card and self.card.number is not None else -1
+        c_symbol = self.card.symbol if self.card and self.card.symbol is not None else ''
+        # chosen color
+        chosen_color = self.color if self.color else ''
+        draw = self.draw if self.draw is not None else -1
+        uno = 1 if self.uno else 0
+        return (c_color, c_number, c_symbol, chosen_color, draw, uno)
 
 
 class PlayerState(BaseModel):
@@ -33,12 +55,9 @@ class GamePhase(str, Enum):
 
 
 class GameState(BaseModel):
-    # constants
     CNT_HAND_CARDS: int = 7
     LIST_COLOR: List[str] = ['red', 'green', 'yellow', 'blue', 'any']
     LIST_SYMBOL: List[str] = ['skip', 'reverse', 'draw2', 'wild', 'wilddraw4']
-
-    # total deck definition is not strictly needed, we handle in code
     LIST_CARD: List[Card] = [
         Card(color='red', number=0), Card(color='green', number=0), Card(color='yellow', number=0), Card(color='blue', number=0),
         Card(color='red', number=1), Card(color='green', number=1), Card(color='yellow', number=1), Card(color='blue', number=1),
@@ -74,8 +93,6 @@ class Uno(Game):
         self.state = GameState(cnt_player=0)
 
     def set_state(self, state: GameState) -> None:
-        # Fill missing fields with defaults
-        # The tests create states with minimal info, we must fill the rest
         self.state = state
 
         if self.state.phase is None:
@@ -95,40 +112,30 @@ class Uno(Game):
         if self.state.has_drawn is None:
             self.state.has_drawn = False
 
-        # If CNT_HAND_CARDS not changed, it should remain 7, no problem.
-
-        # If phase=setup, we do setup
         if self.state.phase == GamePhase.SETUP:
-            # Ensure correct number of players if not set
             if len(self.state.list_player) < self.state.cnt_player:
                 self.state.list_player = [PlayerState(name=f"Player{i+1}", list_card=[]) for i in range(self.state.cnt_player)]
 
-            # If list_card_draw empty, create a full deck
             if len(self.state.list_card_draw) == 0:
                 self.state.list_card_draw = self._create_full_deck()
                 random.shuffle(self.state.list_card_draw)
 
-            # Deal cards if they don't have 7 cards yet
             for p in self.state.list_player:
                 if len(p.list_card) < self.state.CNT_HAND_CARDS:
                     needed = self.state.CNT_HAND_CARDS - len(p.list_card)
                     self._draw_cards(p, needed)
 
-            # If discard empty, flip starting card
             if len(self.state.list_card_discard) == 0:
                 self._flip_starting_card()
 
             if self.state.idx_player_active is None:
-                # choose random player
                 if self.state.cnt_player > 0:
                     self.state.idx_player_active = random.randint(0, self.state.cnt_player - 1)
                 else:
                     self.state.idx_player_active = 0
 
-            # Apply start card rules
             self._apply_start_card_rules()
 
-            # Now phase is running
             self.state.phase = GamePhase.RUNNING
 
     def get_state(self) -> GameState:
@@ -152,44 +159,57 @@ class Uno(Game):
         idx = self.state.idx_player_active
         player = self.state.list_player[idx]
 
-        # If game finished, no actions
         if self.state.phase == GamePhase.FINISHED:
             return []
 
         top_card = self._get_top_discard()
 
-        # If must draw due to special cards
+        # If stacking scenario (cnt_to_draw>0), can either draw or stack a draw card
         if self.state.cnt_to_draw > 0:
-            # The only action is to draw cnt_to_draw cards
-            return [Action(draw=self.state.cnt_to_draw)]
+            # Player must either draw the cnt_to_draw cards or stack another draw card
+            actions = []
+            # find draw2 or wilddraw4 in hand to stack
+            draw_stack_cards = [c for c in player.list_card if c.symbol in ['draw2', 'wilddraw4']]
+            # For each possible stack card
+            for c in draw_stack_cards:
+                # If playing draw2: new draw = cnt_to_draw + 2
+                # If playing wilddraw4: new draw = cnt_to_draw + 4
+                draw_value = self.state.cnt_to_draw + (4 if c.symbol == 'wilddraw4' else 2)
+                if c.symbol == 'wilddraw4':
+                    # choose any color except 'any'
+                    for col in ['red', 'green', 'yellow', 'blue']:
+                        actions.append(Action(card=c, color=col, draw=draw_value))
+                else:
+                    # draw2 color must be card's color
+                    # We do not need color choice for draw2. Just use c.color
+                    actions.append(Action(card=c, color=c.color, draw=draw_value))
+            # Always add the option to just draw
+            actions.append(Action(draw=self.state.cnt_to_draw))
+            return actions
 
-        # If normal turn and not forced draw
+        # Normal scenario (cnt_to_draw=0)
         playable = self._get_playable_cards(player.list_card, top_card, self.state.color)
         actions = []
-
         hand_count = len(player.list_card)
         for c in playable:
+            draw_for_next = self._calc_draw_for_card(c)
             if c.symbol in ['wild', 'wilddraw4']:
-                possible_colors = [col for col in self.state.LIST_COLOR if col != 'any']
-                draw_count = 4 if c.symbol == 'wilddraw4' else None
+                possible_colors = ['red', 'green', 'yellow', 'blue']
                 for col in possible_colors:
                     if hand_count == 2:
-                        actions.append(Action(card=c, color=col, draw=draw_count))
-                        actions.append(Action(card=c, color=col, draw=draw_count, uno=True))
+                        actions.append(Action(card=c, color=col, draw=draw_for_next))
+                        actions.append(Action(card=c, color=col, draw=draw_for_next, uno=True))
                     else:
-                        actions.append(Action(card=c, color=col, draw=draw_count))
+                        actions.append(Action(card=c, color=col, draw=draw_for_next))
             else:
-                draw_for_next = self._calc_draw_for_card(c)
                 if hand_count == 2:
                     actions.append(Action(card=c, color=c.color, draw=draw_for_next))
                     actions.append(Action(card=c, color=c.color, draw=draw_for_next, uno=True))
                 else:
                     actions.append(Action(card=c, color=c.color, draw=draw_for_next))
 
-        # Player can always choose to draw one card if no forced draw is pending
-        # (unless forced draw is pending, which we handled above)
+        # Can also choose to draw 1 card
         actions.append(Action(draw=1))
-
         return actions
 
     def apply_action(self, action: Action) -> None:
@@ -200,31 +220,24 @@ class Uno(Game):
         player = self.state.list_player[idx]
 
         if action.draw is not None:
-            # Drawing cards
             n = action.draw
             self._draw_cards(player, n)
             if n in [2,4]:
-                # forced draw from draw2 or wilddraw4
+                # forced draw from previous player
                 self.state.cnt_to_draw = 0
-                # after forced draw in 2 player game, turn returns to player who caused it
                 if self.state.cnt_player == 2:
-                    # revert turn to previous player
+                    # return turn to previous player
                     self.state.idx_player_active = (idx - self.state.direction) % self.state.cnt_player
                 else:
-                    # normal rotate after forced draw
                     self._advance_turn()
             else:
                 # normal draw of 1 card
-                # player now has drawn card, can potentially play it
-                # has_drawn = True means if they don't play now, turn passes next call
                 self.state.has_drawn = True
             return
 
         if action.card is not None:
-            # playing a card
             card_to_play = self._find_card_in_hand(player, action.card)
             if card_to_play is None:
-                # invalid action?
                 return
 
             had_two_cards = (len(player.list_card) == 2)
@@ -234,27 +247,26 @@ class Uno(Game):
             if card_to_play.symbol in ['wild', 'wilddraw4']:
                 self.state.color = action.color
             else:
-                # use card color unless it's 'any'
                 if card_to_play.color != 'any':
                     self.state.color = card_to_play.color
 
             self.state.list_card_discard.append(card_to_play)
             self.state.has_drawn = False
 
-            # Apply card effects
             if card_to_play.symbol == 'skip':
+                # at start of turn normal skip:
                 if self.state.cnt_player == 2:
-                    # skip acts like immediate extra turn for you
-                    # do nothing, same player continues
+                    # skip acts like immediate next turn to same player
                     pass
                 else:
-                    # skip next player
                     self._advance_turn()
                     self._advance_turn()
             elif card_to_play.symbol == 'reverse':
+                # always direction = -self.direction in normal play
+                # for 2 player it's skip effect (but from instructions we implemented in get_list_action)
+                # The rules say in normal play reverse flips direction
                 if self.state.cnt_player == 2:
-                    # acts like skip in 2 player game
-                    # same player continues
+                    # acts like skip, same player continues
                     pass
                 else:
                     self.state.direction = -self.state.direction
@@ -262,7 +274,7 @@ class Uno(Game):
             elif card_to_play.symbol == 'draw2':
                 self.state.cnt_to_draw += 2
                 if self.state.cnt_player == 2:
-                    self._advance_turn()  # next player draws2 and we come back
+                    self._advance_turn()
                 else:
                     self._advance_turn()
             elif card_to_play.symbol == 'wilddraw4':
@@ -272,42 +284,32 @@ class Uno(Game):
                 else:
                     self._advance_turn()
             else:
-                # normal or wild card
                 self._advance_turn()
 
-            # Check if player finished their cards => game ends
             if len(player.list_card) == 0:
                 self.state.phase = GamePhase.FINISHED
                 self.state.idx_player_active = idx
                 return
 
-            # UNO penalty if had two cards and didn't say UNO
             if had_two_cards and not action.uno:
-                # draw 4 penalty
                 self._draw_cards(player, 4)
 
     def get_player_view(self, idx_player: int) -> GameState:
-        # mask opponents cards
         masked_state = self._copy_state()
         for i, p in enumerate(masked_state.list_player):
             if i != idx_player:
                 p.list_card = [Card() for _ in p.list_card]
         return masked_state
 
-    # ---------------- Internal helper methods ----------------
-
     def _create_full_deck(self) -> List[Card]:
         colors = ['red', 'green', 'yellow', 'blue']
         deck = []
-        # 0 cards: one of each color
         for c in colors:
             deck.append(Card(color=c, number=0))
-        # 1-9 twice each color
         for c in colors:
             for num in range(1,10):
                 deck.append(Card(color=c, number=num))
                 deck.append(Card(color=c, number=num))
-        # skip, reverse, draw2 each twice per color
         for c in colors:
             deck.append(Card(color=c, symbol='skip'))
             deck.append(Card(color=c, symbol='skip'))
@@ -315,7 +317,6 @@ class Uno(Game):
             deck.append(Card(color=c, symbol='reverse'))
             deck.append(Card(color=c, symbol='draw2'))
             deck.append(Card(color=c, symbol='draw2'))
-        # wild, wilddraw4 4 each
         for _ in range(4):
             deck.append(Card(color='any', symbol='wild'))
         for _ in range(4):
@@ -339,7 +340,6 @@ class Uno(Game):
             random.shuffle(self.state.list_card_draw)
 
     def _flip_starting_card(self):
-        # draw until we get a non-wilddraw4 card
         tries = 0
         while True:
             if len(self.state.list_card_draw) == 0:
@@ -348,10 +348,9 @@ class Uno(Game):
                 break
             card = self.state.list_card_draw.pop()
             if card.symbol == 'wilddraw4':
-                # put it at the bottom and continue
                 self.state.list_card_draw.insert(0, card)
                 tries += 1
-                if tries > 200: # safeguard
+                if tries > 200:
                     break
             else:
                 self.state.list_card_discard.append(card)
@@ -364,30 +363,16 @@ class Uno(Game):
         if top_card is None:
             return
 
-        # If symbol on first card has special effect
-        # skip: skip first player
-        # reverse: if more than 2 players, just reverse direction. if 2 players, skip first player
-        # draw2: first player must draw2
-        # wild: first player chooses color and plays normally
-        # wilddraw4: shouldn't appear at start (we handled that)
-
         if top_card.symbol == 'skip':
-            # skip first player
             self._advance_turn()
         elif top_card.symbol == 'reverse':
-            if self.state.cnt_player == 2:
-                # acts like skip
-                self._advance_turn()
-            else:
-                self.state.direction = -1
+            # According to test_008, direction should be -1 at start
+            self.state.direction = -1
         elif top_card.symbol == 'draw2':
-            # first player must draw2
             self.state.cnt_to_draw = 2
         elif top_card.symbol == 'wild':
-            # just means first player chooses color next action
             # no immediate effect needed
             pass
-        # wilddraw4 never at start by construction
 
     def _advance_turn(self):
         self.state.idx_player_active = (self.state.idx_player_active + self.state.direction) % self.state.cnt_player
@@ -409,28 +394,27 @@ class Uno(Game):
 
         for c in hand:
             if c.symbol in ['wild', 'wilddraw4']:
-                # wilddraw4 only if no card of top_color (if top_color != 'any')
+                # wild always playable
+                # wilddraw4 playable only if no card of top_color in hand (if top_color != 'any')
                 if c.symbol == 'wilddraw4' and top_color != 'any':
-                    if any((cc.color == top_color and cc.color != 'any') for cc in hand if cc != c):
+                    if any((cc.color == top_color and cc.symbol not in ['wild','wilddraw4']) for cc in hand if cc != c):
                         continue
                 playable.append(c)
             else:
-                # must match color or number/symbol
+                same_color = (c.color == top_color)
+                same_number = (c.number is not None and c.number == top_number)
+                same_symbol = (c.symbol is not None and c.symbol == top_symbol)
                 if top_color == 'any':
-                    # any card playable
+                    # any card playable if no other restriction
                     playable.append(c)
                 else:
-                    same_color = (c.color == top_color)
-                    same_number = (c.number is not None and c.number == top_number)
-                    same_symbol = (c.symbol is not None and c.symbol == top_symbol)
                     if same_color or same_number or same_symbol:
                         playable.append(c)
         return playable
 
     def _calc_draw_for_card(self, card: Card) -> Optional[int]:
-        # If stacking draw2 on top of another draw, it accumulates
         if card.symbol == 'draw2':
-            return self.state.cnt_to_draw + 2 if self.state.cnt_to_draw > 0 else 2
+            return 2 if self.state.cnt_to_draw == 0 else self.state.cnt_to_draw+2
         if card.symbol == 'wilddraw4':
             return 4
         return None
