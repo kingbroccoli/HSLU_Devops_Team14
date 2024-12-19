@@ -23,4 +23,6 @@ jobs:
 
       # Step 3: Deploy to Google Cloud
       - name: Deploy application
-        run: gcloud app deploy --quiet
+        run: |
+          echo "Skipping tests and directly deploying the application..."
+          gcloud app deploy --quiet
