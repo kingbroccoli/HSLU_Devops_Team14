@@ -1,13 +1,16 @@
 name: Deploy to Google Cloud
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       # Step 1: Check out the repository code
-      - name: Get code
+      - name: Check out code
         uses: actions/checkout@v4
 
       # Step 2: Set up Google Cloud SDK
@@ -19,6 +22,5 @@ jobs:
           export_default_credentials: true
 
       # Step 3: Deploy to Google Cloud
-      - name: Deploy to Google Cloud
-        run: |
-          gcloud app deploy --quiet
+      - name: Deploy application
+        run: gcloud app deploy --quiet
