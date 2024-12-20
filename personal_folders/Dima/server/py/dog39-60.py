@@ -449,40 +449,30 @@ class Dog(Game):
     def get_normal_moves(self, idx_player: int, card: Card):
         rank = card.rank
         if rank == 'A':
-            steps_options = [1, 11]  # Ace can move 1 or 11
+            steps_options = [1, 11]
         elif rank in ['2', '3', '5', '6', '8', '9', '10']:
-            steps_options = [int(rank)]  # Normal cards move their face value
+            if rank == '10':
+                steps_options = [10]
+            else:
+                steps_options = [int(rank)]
         elif rank == '4':
-            steps_options = [-4]  # 4 only moves backward
+            steps_options = [4, -4]
         elif rank == 'Q':
-            steps_options = [12]  # Queen moves 12
+            steps_options = [12]
         elif rank == 'K':
-            steps_options = [13]  # King moves 13
+            steps_options = [13]
         else:
-            return []  # Other cards (J, 7, JKR) handled separately
+            return []
 
         actions = []
-        used = set()
         p = self.state.list_player[idx_player]
-        
         for mm in p.list_marble:
-            # Skip marbles in kennel for normal moves
-            if self.is_in_kennel(mm.pos, idx_player):
-                continue
-                
-            for steps in steps_options:
-                pos_to = self.calculate_move(idx_player, mm.pos, steps)
-                if self.is_move_valid(idx_player, mm.pos, pos_to, steps, card):
-                    key = (mm.pos, pos_to)
-                    if key not in used:
-                        actions.append(Action(
-                            card=Card(suit=card.suit, rank=card.rank),
-                            pos_from=mm.pos,
-                            pos_to=pos_to,
-                            card_swap=None
-                        ))
-                        used.add(key)
-
+            for st in steps_options:
+                pos_to = self.calculate_move(idx_player, mm.pos, st)
+                if self.is_move_valid(idx_player, mm.pos, pos_to, st, card):
+                    actions.append(Action(
+                        card=Card(suit=card.suit, rank=card.rank),
+                        pos_from=mm.pos, pos_to=pos_to, card_swap=None))
         return actions
 
     def get_j_actions(self, idx_player: int, card: Card):
@@ -516,35 +506,19 @@ class Dog(Game):
         remain = 7 - self.count_used_7_steps()
         if remain <= 0:
             return []
-
         actions = []
         used = set()
         seven_card = Card(suit='♣', rank='7')
         p = self.state.list_player[idx_player]
-
-        # For each marble
         for mm in p.list_marble:
-            # Skip marbles in kennel
-            if self.is_in_kennel(mm.pos, idx_player):
-                continue
-                
-            # Try each possible step count up to remaining steps
             for step in range(1, remain + 1):
                 pos_to = self.calculate_move(idx_player, mm.pos, step)
-                
-                # Check if move is valid
                 if self.can_apply_7_step(mm.pos, pos_to, idx_player):
-                    # Avoid duplicate moves
-                    key = (mm.pos, pos_to)
+                    a = Action(card=Card(suit=seven_card.suit, rank=seven_card.rank), pos_from=mm.pos, pos_to=pos_to, card_swap=None)
+                    key = (a.pos_from, a.pos_to)
                     if key not in used:
-                        actions.append(Action(
-                            card=seven_card,
-                            pos_from=mm.pos,
-                            pos_to=pos_to,
-                            card_swap=None
-                        ))
+                        actions.append(a)
                         used.add(key)
-
         return actions
 
     def get_actions_for_card(self, card: Card, idx_player: int):
@@ -620,22 +594,15 @@ class Dog(Game):
         return False
 
     def calculate_move(self, idx_player: int, pos: int, steps: int):
-        if pos < 64:  # On main board
+        if pos < 64:
             raw_pos = pos + steps
             finish_start = 64 + idx_player * 8 + 4
             finish_end = finish_start + 4
-            
-            # Check if marble should enter finish area
-            if pos < idx_player * 16 and raw_pos >= idx_player * 16 + 16:
-                # Calculate steps after passing home position
-                remaining_steps = steps - ((idx_player * 16 + 16) - pos)
-                finish_pos = finish_start + remaining_steps - 1
-                if finish_pos < finish_end:
-                    return finish_pos
-            
-            # Stay on main board
-            return (pos + steps) % 64
-        else:  # Already in kennel or finish
+            if finish_start <= raw_pos < finish_end:
+                return raw_pos
+            else:
+                return (pos + steps) % 64
+        else:
             return pos + steps
 
     def get_path_positions(self, start: int, end: int):
