@@ -777,30 +777,27 @@ class Dog(Game):
             steps = (pos_to - pos_from) % 64
         if steps <= 0:
             return False
-        # check safe start marbles block and no overtaking finish
+
+        # Check safe start marbles block and no overtaking finish
         path = self.get_path_positions(pos_from, pos_to)
         for pp in path[1:]:
             occ = self.get_marble_owner(pp)
             if occ is not None:
                 om = self.get_marble_by_pos(occ, pp)
-                if pp == occ * 16 and om.is_save:
+                if om is not None and pp == occ * 16 and om.is_save:
                     return False
+
         occ = self.get_marble_owner(pos_to)
         if occ is not None:
             if self.is_in_finish(pos_to, occ):
                 return False
+
         return True
 
     def apply_seven_step(self, action: Action) -> bool:
-        if not self.has_card_in_hand(self.state.idx_player_active, action.card):
-            # first step sets card active and remove from hand
-            if self.state.card_active and self.state.card_active.rank == '7' and self.state.steps_remaining_for_7 == 7:
-                # remove card from hand now
-                if self.has_card_in_hand(self.state.idx_player_active, action.card):
-                    self.remove_card_from_hand(self.state.idx_player_active, action.card)
-            else:
-                if not self.state.card_active or self.state.card_active.rank != '7':
-                    return False
+        if action.pos_from is None or action.pos_to is None:
+            return False
+
         if not self.can_apply_7_step(action.pos_from, action.pos_to, self.state.idx_player_active):
             return False
 
@@ -971,35 +968,43 @@ class Dog(Game):
 
     # J actions are handled in get_j_actions
 
-    def apply_j_swap(self, action: Action):
-        return self.perform_j_swap(action)
 
     def perform_j_swap(self, action: Action) -> bool:
         pos_from = action.pos_from
         pos_to = action.pos_to
+
+        # Check if pos_from and pos_to are not None
+        if pos_from is None or pos_to is None:
+            return False
+
         from_owner = self.get_marble_owner(pos_from)
         to_owner = self.get_marble_owner(pos_to)
+
         if from_owner is None or to_owner is None:
             return False
+
         m1 = self.get_marble_by_pos(from_owner, pos_from)
         m2 = self.get_marble_by_pos(to_owner, pos_to)
+
         if m1 is None or m2 is None:
             return False
-        # just swap them
+
+        # Just swap them
         temp = m1.pos
         m1.pos = m2.pos
         m2.pos = temp
         return True
 
     def send_marble_home_if_overtaken(self, pos: int, idx_player: int) -> None:
-        # used in 7 steps scenario
+        # Used in 7 steps scenario
         occ = self.get_marble_owner(pos)
         if occ is not None:
             om = self.get_marble_by_pos(occ, pos)
-            if pos != occ * 16 or not om.is_save:
-                # send home unless safe start marble
-                if not self.is_in_finish(pos, occ):
-                    self.send_marble_home(occ, pos)
+            if om is not None:  # Check if om is not None
+                if pos != occ * 16 or not om.is_save:
+                    # Send home unless safe start marble
+                    if not self.is_in_finish(pos, occ):
+                        self.send_marble_home(occ, pos)
 
     def check_and_end_game(self) -> None:
         if self.check_game_finished():
