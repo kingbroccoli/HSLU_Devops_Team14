@@ -1,11 +1,17 @@
-
-from server.py.game import Game, Player
-from typing import List, Optional, ClassVar, Tuple, Set
-from enum import Enum
-import random
+# pylint: disable=too-many-lines
 from dataclasses import dataclass
-from pydantic import BaseModel
 import copy
+from typing import List, Optional, ClassVar, Tuple
+import random
+from enum import Enum
+from pydantic import BaseModel
+from server.py.game import Game, Player
+
+
+
+
+
+
 
 class Card(BaseModel):
     suit: str  # card suit (color)
@@ -1013,12 +1019,16 @@ class Dog(Game):
     # no direct method needed further as we covered all logic
 
 class RandomPlayer(Player):
+    """Random player that selects actions randomly"""
+
     def select_action(self, state: GameState, actions: List[Action]) -> Optional[Action]:
-        if actions:
+        """Given masked game state and possible actions, select the next action"""
+        if len(actions) > 0:
             return random.choice(actions)
         return None
 
     def get_player_type(self) -> str:
+        """Returns the player type."""
         return "Random"
 
 if __name__ == '__main__':
