@@ -1,5 +1,5 @@
 from server.py.game import Game, Player
-from typing import List, Optional, ClassVar, Any
+from typing import List, Optional, ClassVar, Any, Self
 from pydantic import BaseModel
 from enum import Enum
 import random
@@ -96,7 +96,7 @@ class Dog(Game):
         )
         self.reset()
 
-        self.seven_backup_state = None
+        self.seven_backup_state: Optional[GameState] = None
         self.joker_chosen = False
         self.exchange_buffer: List[Optional[Card]] = [None,None,None,None]
 
@@ -753,9 +753,9 @@ class Dog(Game):
         m2.pos = p1_pos
         return True
 
-    def save_backup_state(self):
+    def save_backup_state(self) -> "Dog":
         self.seven_backup_state = copy.deepcopy(self.state)
-        
+        return self
     def restore_backup_state(self) -> None:
         if self.seven_backup_state:
             self.state = self.seven_backup_state
