@@ -92,7 +92,7 @@ class Dog(Game):
 
     def set_state(self, state: GameState) -> None:
         """ Set the game to a given state """
-        pass
+        self.state = state
 
     def get_state(self) -> GameState:
         """ Get the complete, unmasked game state """
