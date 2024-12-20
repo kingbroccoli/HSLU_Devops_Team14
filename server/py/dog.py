@@ -11,7 +11,7 @@ class Card(BaseModel):
     suit: str  # card suit (color)
     rank: str  # card rank
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self.suit == 'X':
             return f"X{self.rank}"
         return f"{self.suit}{self.rank}"
@@ -138,9 +138,9 @@ class Dog(Game):
             steps_remaining_for_7=7
         )
 
-        self.original_state_before_7 = None
+        self.original_state_before_7: Optional[GameState] = None
         self.joker_mode = False
-        self.exchanges_done = []
+        self.exchanges_done: List[Tuple[int, Card]] = []
         self.out_of_cards_counter = 0
 
         self.deal_cards_for_round(self.state.cnt_round)
@@ -158,7 +158,7 @@ class Dog(Game):
         # Return state as is
         return self.state
 
-    def deal_cards_for_round(self, round_num: int):
+    def deal_cards_for_round(self, round_num: int) -> None:
         pattern = [6, 5, 4, 3, 2]
         idx = (round_num - 1) % 5
         cnt_cards = pattern[idx]
@@ -171,7 +171,7 @@ class Dog(Game):
                     self.check_and_reshuffle()
                 self.state.list_player[i].list_card.append(self.state.list_card_draw.pop(0))
 
-    def check_and_reshuffle(self):
+    def check_and_reshuffle(self) -> None:
         if not self.state.list_card_draw and self.state.list_card_discard:
             self.state.list_card_draw = self.state.list_card_discard.copy()
             self.state.list_card_discard = []
@@ -350,7 +350,9 @@ class Dog(Game):
             return
 
         # card_active=JKR no chosen card yet
-        if self.state.card_active and self.state.card_active.rank == 'JKR' and not self.is_seven_active():
+        if self.state.card_active and self.state.card_active.rank == 'JKR' and not (
+                self.state.card_active.rank == '7' and self.state.steps_remaining_for_7 > 0
+        ):
             if action and action.card_swap is not None:
                 # choose card
                 if action.card in player.list_card:
@@ -457,7 +459,7 @@ class Dog(Game):
         else:
             self.end_turn()
 
-    def perform_card_exchange(self):
+    def perform_card_exchange(self) -> None:
         c0 = [c for p,c in self.exchanges_done if p==0][0]
         c1 = [c for p,c in self.exchanges_done if p==1][0]
         c2 = [c for p,c in self.exchanges_done if p==2][0]
@@ -472,7 +474,7 @@ class Dog(Game):
         self.state.bool_card_exchanged = True
         self.state.idx_player_active = self.state.idx_player_started
 
-    def next_player_for_exchange(self):
+    def next_player_for_exchange(self) -> None:
         for _ in range(4):
             self.state.idx_player_active = (self.state.idx_player_active + 1) % 4
             if len(self.exchanges_done) < self.CNT_PLAYERS:
@@ -483,7 +485,7 @@ class Dog(Game):
         if len(self.exchanges_done) == self.state.cnt_player:
             self.perform_card_exchange()
 
-    def end_turn(self):
+    def end_turn(self) -> None:
         if self.check_game_finished():
             self.state.phase = GamePhase.FINISHED
             return
@@ -496,7 +498,7 @@ class Dog(Game):
         # all players no cards => new round
         self.new_round()
 
-    def new_round(self):
+    def new_round(self) -> None:
         self.state.cnt_round += 1
         self.state.idx_player_started = (self.state.idx_player_started + 1) % 4
         self.state.idx_player_active = self.state.idx_player_started
@@ -508,40 +510,40 @@ class Dog(Game):
         self.out_of_cards_counter = 0
         self.state.steps_remaining_for_7 = 7
 
-    def fold_cards(self, idx_player: int):
+    def fold_cards(self, idx_player: int) -> None:
         p = self.state.list_player[idx_player]
         for c in p.list_card:
             self.discard_card(c)
         p.list_card = []
 
-    def discard_card(self, card: Card):
+    def discard_card(self, card: Card) -> None:
         self.state.list_card_discard.append(card)
 
-    def check_game_finished(self):
+    def check_game_finished(self) -> bool:
         # Check if team 0&2 or 1&3 finished
         if self.team_finished([0,2]) or self.team_finished([1,3]):
             return True
         return False
 
-    def team_finished(self, team: List[int]):
+    def team_finished(self, team: List[int]) -> bool:
         for tidx in team:
             for m in self.state.list_player[tidx].list_marble:
                 if not self.is_in_finish(m.pos, tidx):
                     return False
         return True
 
-    def has_card_in_hand(self, idx_player: int, card: Card):
+    def has_card_in_hand(self, idx_player: int, card: Card) -> bool:
         return card in self.state.list_player[idx_player].list_card
 
-    def remove_card_from_hand(self, idx_player: int, card: Card):
+    def remove_card_from_hand(self, idx_player: int, card: Card) -> None:
         p = self.state.list_player[idx_player]
         if card in p.list_card:
             p.list_card.remove(card)
 
-    def save_backup_state(self):
+    def save_backup_state(self) -> None:
         self.original_state_before_7 = copy.deepcopy(self.state)
 
-    def restore_backup_state(self):
+    def restore_backup_state(self) -> None:
         if self.original_state_before_7:
             self.state = self.original_state_before_7
             self.original_state_before_7 = None
@@ -564,15 +566,15 @@ class Dog(Game):
             else:
                 return list(range(end, start + 1))
 
-    def send_marble_home(self, idx_player: int, pos: int):
+    def send_marble_home(self, idx_player: int, pos: int) -> None:
         m = self.get_marble_by_pos(idx_player, pos)
         if m:
             kennel_start = 64 + idx_player * 8
             m.pos = kennel_start
             m.is_save = False
 
-    def get_j_actions(self, idx_player: int, card: Card):
-        actions = []
+    def get_j_actions(self, idx_player: int, card: Card) -> List[Action]:
+        actions: List[Action] = []
         marbles_info = []
         # collect marbles that can be swapped (not in kennel or finish)
         # exclude safe on start marbles of opponents
@@ -626,7 +628,7 @@ class Dog(Game):
             pass
         return actions
 
-    def is_move_valid(self, idx_player: int, pos_from: int, pos_to: int, steps: int, card: Card):
+    def is_move_valid(self, idx_player: int, pos_from: int, pos_to: int, steps: int, card: Card) -> bool:
         # The benchmark checks a lot of conditions,
         # We'll replicate logic from previous code:
         # If we move into finish must not move backward
@@ -646,7 +648,7 @@ class Dog(Game):
                 occ = self.get_marble_owner(ppos)
                 if occ is not None:
                     om = self.get_marble_by_pos(occ, ppos)
-                    if ppos == occ * 16 and om.is_save:
+                    if om and om.is_save:
                         return False
             occ = self.get_marble_owner(pos_to)
             if occ is not None:
@@ -663,7 +665,7 @@ class Dog(Game):
                 occ = self.get_marble_owner(ppos)
                 if occ is not None:
                     om = self.get_marble_by_pos(occ, ppos)
-                    if ppos == occ * 16 and om.is_save:
+                    if om and om.is_save:
                         return False
             occ = self.get_marble_owner(pos_to)
             if occ is not None:
@@ -672,7 +674,7 @@ class Dog(Game):
                     return False
         return True
 
-    def apply_normal_move(self, action: Action):
+    def apply_normal_move(self, action: Action) -> bool:
         idx = self.state.idx_player_active
         player = self.state.list_player[idx]
         mm = None
@@ -680,25 +682,20 @@ class Dog(Game):
             if m.pos == action.pos_from:
                 mm = m
                 break
-        if mm is None:
+        if mm is None or action.pos_from is None or action.pos_to is None:
             return False
 
-        steps = action.pos_to - action.pos_from
+        steps = action.pos_to - action.pos_from if action.pos_from is not None and action.pos_to is not None else 0
         if action.pos_from < 64 and action.pos_to < 64:
             # circle
             steps = (action.pos_to - action.pos_from) % 64
-            # if backward: steps>32?
-            # handle backward for 4
-            # If card rank=4 and steps <0 means backward
-            # We'll infer direction from card:
+            # handle backward for card rank 4
             card = action.card
             if card.rank == '4' and (action.pos_to != action.pos_from):
                 # check direction
                 forward_dist = (action.pos_to - action.pos_from) % 64
                 backward_dist = (action.pos_from - action.pos_to) % 64
-                # choose smaller?
-                # Actually we know from is_move_valid what direction is intended
-                # if backward_dist=4 means backward steps=-4
+                # set steps to backward if required
                 if backward_dist == 4:
                     steps = -4
                 else:
@@ -707,54 +704,53 @@ class Dog(Game):
             steps = action.pos_to - action.pos_from
 
         if action.card.rank == 'A':
-            # can be 1 or 11 steps if chosen?
-            # tests want it to produce moves for both 1 and 11 steps
-            # The chosen action is final. So we trust that action is correct from get_list_action.
-
+            # 'A' can represent 1 or 11 steps
+            # This logic is ensured via get_list_action
             pass
 
         if not self.is_move_valid(idx, action.pos_from, action.pos_to, steps, action.card):
             return False
 
-        # send home marbles on path if 7 scenario done differently
-        # normal card:
-        # If final position occupied:
+        # Handle final position occupant
         occ = self.get_marble_owner(action.pos_to)
         if occ is not None:
-            # send occupant home if not in finish
+            # Send occupant home if not in finish
             if not self.is_in_finish(action.pos_to, occ):
                 self.send_marble_home(occ, action.pos_to)
 
-        # Overtaking: If steps >0 and card=7 splitted done in apply_seven_step not here
-        # For normal card no overtaking sending home except final position occupant
-
+        # Update marble position
         mm.pos = action.pos_to
         if self.is_in_kennel(action.pos_from, idx):
             mm.is_save = True
         return True
 
-    def apply_j_swap(self, action: Action):
+    def apply_j_swap(self, action: Action) -> bool:
+        if action.pos_from is None or action.pos_to is None:
+            return False  # Ensure pos_from and pos_to are not None
+
         pos_from = action.pos_from
         pos_to = action.pos_to
+
         from_owner = self.get_marble_owner(pos_from)
         to_owner = self.get_marble_owner(pos_to)
         if from_owner is None or to_owner is None:
             return False
+
         m1 = self.get_marble_by_pos(from_owner, pos_from)
         m2 = self.get_marble_by_pos(to_owner, pos_to)
         if m1 is None or m2 is None:
             return False
 
-        # check conditions: no swap if safe on start from opponent
-        # we filtered them in get_j_actions
+        # Check conditions: no swap if safe on start from opponent
+        # This is already filtered in get_j_actions
 
-        # just swap
+        # Perform the swap
         p1_pos = m1.pos
         m1.pos = m2.pos
         m2.pos = p1_pos
         return True
 
-    def count_used_7_steps(self):
+    def count_used_7_steps(self) -> int:
         # Count total forward steps from backup to current
         if not self.original_state_before_7:
             return 0
@@ -775,7 +771,7 @@ class Dog(Game):
                 steps_used += fw_steps
         return steps_used
 
-    def can_apply_7_step(self, pos_from: int, pos_to: int, idx_player: int):
+    def can_apply_7_step(self, pos_from: int, pos_to: int, idx_player: int) -> bool:
         steps = (pos_to - pos_from)
         if pos_from < 64 and pos_to < 64:
             steps = (pos_to - pos_from) % 64
@@ -795,7 +791,7 @@ class Dog(Game):
                 return False
         return True
 
-    def apply_seven_step(self, action: Action):
+    def apply_seven_step(self, action: Action) -> bool:
         if not self.has_card_in_hand(self.state.idx_player_active, action.card):
             # first step sets card active and remove from hand
             if self.state.card_active and self.state.card_active.rank == '7' and self.state.steps_remaining_for_7 == 7:
@@ -860,10 +856,10 @@ class Dog(Game):
             self.state.card_active = action.card
         return True
 
-    def get_actions_for_seven(self, idx_player: int):
+    def get_actions_for_seven(self, idx_player: int) -> List[Action]:
         # must move total 7 steps splitted
         # get possible moves from current state
-        actions = []
+        actions: List[Action] = []
         used = set()
         card = Card(suit='♣', rank='7')
         # We must use the actual card that started 7
@@ -871,7 +867,7 @@ class Dog(Game):
             card = self.state.card_active
         remain = self.state.steps_remaining_for_7
         if remain <= 0:
-            return []
+            return actions
 
         p = self.state.list_player[idx_player]
         # possible steps from 1 to remain
@@ -898,12 +894,12 @@ class Dog(Game):
                         used.add(key)
         return actions
 
-    def get_actions_for_card(self, card: Card, idx_player: int):
+    def get_actions_for_card(self, card: Card, idx_player: int)-> List[Action]:
         # If card=7 return get_actions_for_seven
         if card.rank == '7':
             return self.get_actions_for_seven(idx_player)
 
-        actions = []
+        actions: List[Action] = []
         used = set()
         # if card in [A,K] can start if possible
         if card.rank in ['A','K']:
@@ -934,7 +930,7 @@ class Dog(Game):
                     used.add(k)
         return actions
 
-    def get_normal_moves(self, idx_player: int, card: Card):
+    def get_normal_moves(self, idx_player: int, card: Card) -> List[Action]:
         rank = card.rank
         if rank == 'A':
             steps_options = [1, 11]
@@ -949,7 +945,7 @@ class Dog(Game):
         else:
             return []
 
-        actions = []
+        actions: List[Action] = []
         p = self.state.list_player[idx_player]
         for mm in p.list_marble:
             if self.is_in_kennel(mm.pos, idx_player) and card.rank not in ['A','K','JKR']:
@@ -978,7 +974,7 @@ class Dog(Game):
     def apply_j_swap(self, action: Action):
         return self.perform_j_swap(action)
 
-    def perform_j_swap(self, action: Action):
+    def perform_j_swap(self, action: Action) -> bool:
         pos_from = action.pos_from
         pos_to = action.pos_to
         from_owner = self.get_marble_owner(pos_from)
@@ -995,7 +991,7 @@ class Dog(Game):
         m2.pos = temp
         return True
 
-    def send_marble_home_if_overtaken(self, pos: int, idx_player: int):
+    def send_marble_home_if_overtaken(self, pos: int, idx_player: int) -> None:
         # used in 7 steps scenario
         occ = self.get_marble_owner(pos)
         if occ is not None:
@@ -1005,7 +1001,7 @@ class Dog(Game):
                 if not self.is_in_finish(pos, occ):
                     self.send_marble_home(occ, pos)
 
-    def check_and_end_game(self):
+    def check_and_end_game(self) -> None:
         if self.check_game_finished():
             self.state.phase = GamePhase.FINISHED
 
@@ -1019,7 +1015,6 @@ class RandomPlayer(Player):
 
     def get_player_type(self) -> str:
         return "Random"
-
 
 if __name__ == '__main__':
     game = Dog()
