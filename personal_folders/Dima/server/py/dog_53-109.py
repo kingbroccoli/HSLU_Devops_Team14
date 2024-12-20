@@ -1,22 +1,4 @@
 # pylint: disable=too-many-lines
-# pylint: disable=too-many-instance-attributes
-# pylint: disable=too-many-arguments
-# pylint: disable=too-many-locals
-# pylint: disable=too-many-branches
-# pylint: disable=too-many-statements
-# pylint: disable=missing-class-docstring
-# pylint: disable=missing-module-docstring
-# pylint: disable=missing-function-docstring
-# pylint: disable=line-too-long
-# pylint: disable=invalid-name
-# pylint: disable=attribute-defined-outside-init
-# pylint: disable=bare-except
-# pylint: disable=too-few-public-methods
-# pylint: disable=consider-using-enumerate
-# pylint: disable=useless-return
-# pylint: disable=unused-argument
-# pylint: disable=too-many-public-methods
-# pylint: disable=too-many-nested-blocks
 
 ''' This Code implement the game brandy dog '''
 from typing import List, Optional, ClassVar, Tuple, Set
@@ -133,10 +115,12 @@ class Dog(Game):
                 list_card=[],
                 list_marble=[]
             )
-            for pos in self.KENNEL_POSITIONS[idx]:
-                marble = Marble(pos=pos, is_save=False)
+            for m_idx in range(4):
+                marble = Marble(
+                    pos=self.KENNEL_POSITIONS[idx][m_idx],
+                    is_save=False
+                )
                 player_state.list_marble.append(marble)
-
             self.state.list_player.append(player_state)
 
         self.state.idx_player_started = random.randint(0, 3)
@@ -174,6 +158,7 @@ class Dog(Game):
         active_player_idx = self.state.idx_player_active
         start_position = self.START_POSITION[active_player_idx]
 
+        # If we have a 7 sequence ongoing:
         if self._has_active_seven_card():
             seven_actions = self._get_actions_for_seven_card(actions, seen_actions, active_player_idx)
             return seven_actions
@@ -181,9 +166,11 @@ class Dog(Game):
         if self._is_setup_phase():
             return self._get_setup_phase_actions(actions, seen_actions, self.state.list_player[active_player_idx])
 
+        # Normal scenario: Add start position actions if available
         if not self._is_start_position_occupied(active_player_idx):
             self._add_start_position_actions(actions, seen_actions, active_player_idx, start_position)
 
+        # If card_active is None, choose any card; else use the active card
         if self.state.card_active is None:
             possible_cards = self.state.list_player[active_player_idx].list_card
         else:
@@ -197,7 +184,6 @@ class Dog(Game):
     def apply_action(self, action: Optional[Action]) -> None:
         if self.state.phase == GamePhase.FINISHED:
             return
-
         active_player_index = self.state.idx_player_active
 
         if action is None:
@@ -230,19 +216,6 @@ class Dog(Game):
         if self.state.card_active is None or self.state.card_active.rank != "7":
             self._move_card_to_discard(action, active_player_index)
             self._change_active_player()
-
-        self.check_game_finished()
-
-    def check_game_finished(self) -> None:
-        for team in [[0, 2], [1, 3]]:
-            all_finished = all(
-                marble.pos in self.FINISH_POSITIONS[player_idx]
-                for player_idx in team
-                for marble in self.state.list_player[player_idx].list_marble
-            )
-            if all_finished:
-                self.state.phase = GamePhase.FINISHED
-                return
 
     def check_move_validity(self, active_player_idx: int, marble_idx: int, marble_new_pos: int) -> bool:
         marble = self.state.list_player[active_player_idx].list_marble[marble_idx]
@@ -291,7 +264,7 @@ class Dog(Game):
 
     def send_home_if_passed(self, pos: int, active_player_idx: int) -> None:
         for p_idx, player in enumerate(self.state.list_player):
-            for _, marble in enumerate(player.list_marble):
+            for m_idx, marble in enumerate(player.list_marble):
                 if marble.pos == pos:
                     marble.pos = self.KENNEL_POSITIONS[p_idx][0]
                     marble.is_save = False
@@ -652,6 +625,7 @@ class Dog(Game):
                 self._change_active_player()
                 return
         else:
+            # Handle the None case if necessary
             if self.original_state_before_7 is not None:
                 self.state = self.original_state_before_7
             self.original_state_before_7 = None
