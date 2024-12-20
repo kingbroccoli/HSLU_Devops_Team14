@@ -1,38 +1,16 @@
-<<<<<<< HEAD
 from server.py.game import Game, Player
 from typing import List, Optional, ClassVar
 from pydantic import BaseModel
 from enum import Enum
 import random
-=======
-# pylint: disable=too-many-lines
-from dataclasses import dataclass
->>>>>>> origin/main
 import copy
-from typing import List, Optional, ClassVar, Tuple
-import random
-from enum import Enum
-from pydantic import BaseModel
-from server.py.game import Game, Player
-
-
-
-
-
-
 
 
 class Card(BaseModel):
     suit: str  # card suit (color)
     rank: str  # card rank
 
-<<<<<<< HEAD
     def __str__(self):
-=======
-    def __str__(self) -> str:
-        if self.suit == 'X':
-            return f"X{self.rank}"
->>>>>>> origin/main
         return f"{self.suit}{self.rank}"
 
 
@@ -118,16 +96,9 @@ class Dog(Game):
         )
         self.reset()
 
-<<<<<<< HEAD
         self.seven_backup_state = None
         self.joker_chosen = False
         self.exchange_buffer = [None,None,None,None]
-=======
-        self.original_state_before_7: Optional[GameState] = None
-        self.joker_mode = False
-        self.exchanges_done: List[Tuple[int, Card]] = []
-        self.out_of_cards_counter = 0
->>>>>>> origin/main
 
 
 
@@ -173,7 +144,7 @@ class Dog(Game):
                     p.list_card = [Card(suit='X', rank='X') for _ in p.list_card]
         return masked_state
 
-    def deal_cards_for_round(self, round_num: int) -> None:
+    def deal_cards_for_round(self, round_num: int):
         pattern = [6, 5, 4, 3, 2]
         idx = (round_num - 1) % 5
         cnt_cards = pattern[idx]
@@ -186,7 +157,7 @@ class Dog(Game):
                     self.check_and_reshuffle()
                 self.state.list_player[i].list_card.append(self.state.list_card_draw.pop(0))
 
-    def check_and_reshuffle(self) -> None:
+    def check_and_reshuffle(self):
         if not self.state.list_card_draw and self.state.list_card_discard:
             self.state.list_card_draw = self.state.list_card_discard.copy()
             self.state.list_card_discard = []
@@ -287,28 +258,11 @@ class Dog(Game):
             return
 
         # card_active=JKR no chosen card yet
-<<<<<<< HEAD
         if self.state.card_active and self.state.card_active.rank == 'JKR' and not self.joker_chosen and action and action.card_swap is not None:
             if action.card in player.list_card:
                 player.list_card.remove(action.card)
             self.state.card_active = action.card_swap
             self.joker_chosen = True
-=======
-        if self.state.card_active and self.state.card_active.rank == 'JKR' and not (
-                self.state.card_active.rank == '7' and self.state.steps_remaining_for_7 > 0
-        ):
-            if action and action.card_swap is not None:
-                # choose card
-                if action.card in player.list_card:
-                    player.list_card.remove(action.card)
-                self.state.card_active = action.card_swap
-                return
-            if action is None:
-                # skip => fold all
-                self.fold_cards(idx)
-                self.end_turn()
-                return
->>>>>>> origin/main
             return
 
         # card_active=7 partial move
@@ -384,19 +338,11 @@ class Dog(Game):
                 self.end_turn()
             return
 
-<<<<<<< HEAD
     def perform_card_exchange(self):
         c0 = self.exchange_buffer[0]
         c1 = self.exchange_buffer[1]
         c2 = self.exchange_buffer[2]
         c3 = self.exchange_buffer[3]
-=======
-    def perform_card_exchange(self) -> None:
-        c0 = [c for p,c in self.exchanges_done if p==0][0]
-        c1 = [c for p,c in self.exchanges_done if p==1][0]
-        c2 = [c for p,c in self.exchanges_done if p==2][0]
-        c3 = [c for p,c in self.exchanges_done if p==3][0]
->>>>>>> origin/main
 
         self.state.list_player[0].list_card.append(c2)
         self.state.list_player[2].list_card.append(c0)
@@ -407,7 +353,7 @@ class Dog(Game):
         self.state.bool_card_exchanged = True
         self.state.idx_player_active = self.state.idx_player_started
 
-    def next_player_for_exchange(self) -> None:
+    def next_player_for_exchange(self):
         for _ in range(4):
             self.state.idx_player_active = (self.state.idx_player_active + 1) % 4
             if self.exchange_buffer[self.state.idx_player_active] is None:
@@ -415,7 +361,7 @@ class Dog(Game):
         if all(x is not None for x in self.exchange_buffer):
             self.perform_card_exchange()
 
-    def end_turn(self) -> None:
+    def end_turn(self):
         if self.check_game_finished():
             self.state.phase = GamePhase.FINISHED
             return
@@ -427,7 +373,7 @@ class Dog(Game):
                 return
         self.new_round()
 
-    def new_round(self) -> None:
+    def new_round(self):
         self.state.cnt_round += 1
         self.state.idx_player_started = (self.state.idx_player_started + 1) % 4
         self.state.idx_player_active = self.state.idx_player_started
@@ -438,51 +384,40 @@ class Dog(Game):
         self.seven_backup_state = None
         self.exchange_buffer = [None, None, None, None]
 
-    def fold_cards(self, idx_player: int) -> None:
+    def fold_cards(self, idx_player: int):
         p = self.state.list_player[idx_player]
         for c in p.list_card:
             self.discard_card(c)
         p.list_card = []
 
-    def discard_card(self, card: Card) -> None:
+    def discard_card(self, card: Card):
         self.state.list_card_discard.append(card)
 
-<<<<<<< HEAD
     def check_game_finished(self):
         if self.team_finished([0, 2]) or self.team_finished([1, 3]):
-=======
-    def check_game_finished(self) -> bool:
-        # Check if team 0&2 or 1&3 finished
-        if self.team_finished([0,2]) or self.team_finished([1,3]):
->>>>>>> origin/main
             return True
         return False
 
-    def team_finished(self, team: List[int]) -> bool:
+    def team_finished(self, team: List[int]):
         for tidx in team:
             for m in self.state.list_player[tidx].list_marble:
                 if not self.is_in_finish(m.pos, tidx):
                     return False
         return True
 
-<<<<<<< HEAD
     def is_in_finish(self, pos: int, idx_player: int):
         finish_start = 64 + idx_player * 8 + 4
         finish_end = finish_start + 4
         return finish_start <= pos < finish_end
 
     def has_card_in_hand(self, idx_player: int, card: Card):
-=======
-    def has_card_in_hand(self, idx_player: int, card: Card) -> bool:
->>>>>>> origin/main
         return card in self.state.list_player[idx_player].list_card
 
-    def remove_card_from_hand(self, idx_player: int, card: Card) -> None:
+    def remove_card_from_hand(self, idx_player: int, card: Card):
         p = self.state.list_player[idx_player]
         if card in p.list_card:
             p.list_card.remove(card)
 
-<<<<<<< HEAD
     def get_start_actions(self, idx_player: int, card: Card):
         start_field = idx_player * 16
         kennel_start = 64 + idx_player * 8
@@ -514,49 +449,30 @@ class Dog(Game):
     def get_normal_moves(self, idx_player: int, card: Card):
         rank = card.rank
         if rank == 'A':
-            steps_options = [1, 11]  # Ace can move 1 or 11
+            steps_options = [1, 11]
         elif rank in ['2', '3', '5', '6', '8', '9', '10']:
-            steps_options = [int(rank)]  # Normal cards move their face value
+            if rank == '10':
+                steps_options = [10]
+            else:
+                steps_options = [int(rank)]
         elif rank == '4':
-            steps_options = [-4]  # 4 only moves backward
+            steps_options = [4, -4]
         elif rank == 'Q':
-            steps_options = [12]  # Queen moves 12
+            steps_options = [12]
         elif rank == 'K':
-            steps_options = [13]  # King moves 13
+            steps_options = [13]
         else:
-            return []  # Other cards (J, 7, JKR) handled separately
-=======
-    def save_backup_state(self) -> None:
-        self.original_state_before_7 = copy.deepcopy(self.state)
-
-    def restore_backup_state(self) -> None:
-        if self.original_state_before_7:
-            self.state = self.original_state_before_7
-            self.original_state_before_7 = None
->>>>>>> origin/main
+            return []
 
         actions = []
-        used = set()
         p = self.state.list_player[idx_player]
-        
         for mm in p.list_marble:
-            # Skip marbles in kennel for normal moves
-            if self.is_in_kennel(mm.pos, idx_player):
-                continue
-                
-            for steps in steps_options:
-                pos_to = self.calculate_move(idx_player, mm.pos, steps)
-                if self.is_move_valid(idx_player, mm.pos, pos_to, steps, card):
-                    key = (mm.pos, pos_to)
-                    if key not in used:
-                        actions.append(Action(
-                            card=Card(suit=card.suit, rank=card.rank),
-                            pos_from=mm.pos,
-                            pos_to=pos_to,
-                            card_swap=None
-                        ))
-                        used.add(key)
-
+            for st in steps_options:
+                pos_to = self.calculate_move(idx_player, mm.pos, st)
+                if self.is_move_valid(idx_player, mm.pos, pos_to, st, card):
+                    actions.append(Action(
+                        card=Card(suit=card.suit, rank=card.rank),
+                        pos_from=mm.pos, pos_to=pos_to, card_swap=None))
         return actions
 
     def get_j_actions(self, idx_player: int, card: Card):
@@ -724,7 +640,6 @@ class Dog(Game):
             else:
                 return list(range(end, start + 1))
 
-<<<<<<< HEAD
     def is_move_valid(self, idx_player: int, pos_from: int, pos_to: int, steps: int, card: Card):
         if self.is_in_kennel(pos_from, idx_player):
             return False
@@ -761,123 +676,15 @@ class Dog(Game):
         return True
 
     def send_marble_home(self, idx_player: int, pos: int):
-=======
-    def send_marble_home(self, idx_player: int, pos: int) -> None:
->>>>>>> origin/main
         m = self.get_marble_by_pos(idx_player, pos)
         if m:
             kennel_start = 64 + idx_player * 8
             m.pos = kennel_start
             m.is_save = False
 
-<<<<<<< HEAD
     def apply_normal_move(self, action: Action):
         pos_from = action.pos_from
         pos_to = action.pos_to
-=======
-    def get_j_actions(self, idx_player: int, card: Card) -> List[Action]:
-        actions: List[Action] = []
-        marbles_info = []
-        # collect marbles that can be swapped (not in kennel or finish)
-        # exclude safe on start marbles of opponents
-        for p_idx, pl in enumerate(self.state.list_player):
-            for mm in pl.list_marble:
-                if not self.is_in_kennel(mm.pos, p_idx) and not self.is_in_finish(mm.pos, p_idx):
-                    start_pos = p_idx * 16
-                    if mm.pos == start_pos and mm.is_save and p_idx != idx_player:
-                        # cannot swap safe on start of opponent
-                        continue
-                    marbles_info.append((p_idx, mm.pos, mm.is_save))
-
-        # produce all pairs
-        # J must always swap two marbles
-        # If no opponents available, must swap own marbles if possible
-        # from marbles_info produce all pairs i != j
-        for i in range(len(marbles_info)):
-            for j in range(len(marbles_info)):
-                if i != j:
-                    pos_from = marbles_info[i][1]
-                    pos_to = marbles_info[j][1]
-                    actions.append(Action(card=card, pos_from=pos_from, pos_to=pos_to))
-
-        if not actions:
-            # If no opponents and no others, must at least swap two own marbles if possible
-            # This case handled above. If no actions found means no pairs found.
-            # If no marbles found means no actions.
-            # test require if no oponents and no actions, still must produce something?
-            # According to test 022 and 024: if no opponents => must swap own marbles even if no advantage
-            # Already done above. If no pairs at all: maybe no marbles on board?
-            # If no marbles on board => if no actions, attempt same player marbles in start?
-            # The test 022 scenario: two marbles on start safe => must produce swap between them
-            # If no marbles found above means no marbles on board that can be swapped
-            # That scenario: must consider marbles on board that can be swapped even if safe?
-
-            # According to test 022, if no oponents and no other actions:
-            # we must produce 2 actions: from 0 to 1 and 1 to 0 if they are on the board
-            # Let's re-check marbles in start if we can produce at least a swap between them if no others
-            # We'll do a fallback: find all marbles on board ignoring safe start constraints if no opponents
-
-            # Actually we already considered safe start marbles can't be swapped, but test 022 wants them swapped?
-            # test 022: no opponents and no other actions means we must swap own marbles even if safe on start?
-            # The solution from test instructions: If no oponents and no other actions are possible:
-            # produce swaps of own marbles. If none found above, try to allow safe start marbles too as fallback
-
-            # fallback:
-            # Actually test 022 scenario: The code posted:
-            # They gave scenario: no opponents and no other actions means must at least produce 2 actions (0->1,1->0)
-            # with marbles safe on start. Let's do a fallback.
-
-            pass
-        return actions
-
-    def is_move_valid(self, idx_player: int, pos_from: int, pos_to: int, steps: int, card: Card) -> bool:
-        # The benchmark checks a lot of conditions,
-        # We'll replicate logic from previous code:
-        # If we move into finish must not move backward
-        if self.is_in_finish(pos_to, idx_player) and steps < 0:
-            return False
-
-        # can't move from kennel?
-        if self.is_in_kennel(pos_from, idx_player):
-            # Only start moves allowed from kennel with A/K/JKR
-            return False
-
-        # can't overtake safe on start marbles
-        path = self.get_path_positions(pos_from, pos_to)
-        # If forward steps >0: check each intermediate
-        if steps > 0:
-            for ppos in path[1:]:
-                occ = self.get_marble_owner(ppos)
-                if occ is not None:
-                    om = self.get_marble_by_pos(occ, ppos)
-                    if om and om.is_save:
-                        return False
-            occ = self.get_marble_owner(pos_to)
-            if occ is not None:
-                om = self.get_marble_by_pos(occ, pos_to)
-                if self.is_in_finish(pos_to, occ):
-                    return False
-        else:
-            # backward steps:
-            # If we move backward into finish => not allowed
-            # Already checked above
-            # Check safe block
-            backward_path = self.get_path_positions(pos_to, pos_from)
-            for ppos in backward_path[1:]:
-                occ = self.get_marble_owner(ppos)
-                if occ is not None:
-                    om = self.get_marble_by_pos(occ, ppos)
-                    if om and om.is_save:
-                        return False
-            occ = self.get_marble_owner(pos_to)
-            if occ is not None:
-                om = self.get_marble_by_pos(occ, pos_to)
-                if self.is_in_finish(pos_to, occ):
-                    return False
-        return True
-
-    def apply_normal_move(self, action: Action) -> bool:
->>>>>>> origin/main
         idx = self.state.idx_player_active
         p = self.state.list_player[idx]
         mm = None
@@ -885,10 +692,9 @@ class Dog(Game):
             if m.pos == pos_from:
                 mm = m
                 break
-        if mm is None or action.pos_from is None or action.pos_to is None:
+        if mm is None:
             return False
 
-<<<<<<< HEAD
         # Check for and handle opponent marble at destination
         occ = self.get_marble_at_pos(pos_to)
         if occ is not None:
@@ -899,65 +705,21 @@ class Dog(Game):
 
         mm.pos = pos_to
         if self.is_in_kennel(pos_from, idx):
-=======
-        steps = action.pos_to - action.pos_from if action.pos_from is not None and action.pos_to is not None else 0
-        if action.pos_from < 64 and action.pos_to < 64:
-            # circle
-            steps = (action.pos_to - action.pos_from) % 64
-            # handle backward for card rank 4
-            card = action.card
-            if card.rank == '4' and (action.pos_to != action.pos_from):
-                # check direction
-                forward_dist = (action.pos_to - action.pos_from) % 64
-                backward_dist = (action.pos_from - action.pos_to) % 64
-                # set steps to backward if required
-                if backward_dist == 4:
-                    steps = -4
-                else:
-                    steps = forward_dist
-        else:
-            steps = action.pos_to - action.pos_from
-
-        if action.card.rank == 'A':
-            # 'A' can represent 1 or 11 steps
-            # This logic is ensured via get_list_action
-            pass
-
-        if not self.is_move_valid(idx, action.pos_from, action.pos_to, steps, action.card):
-            return False
-
-        # Handle final position occupant
-        occ = self.get_marble_owner(action.pos_to)
-        if occ is not None:
-            # Send occupant home if not in finish
-            if not self.is_in_finish(action.pos_to, occ):
-                self.send_marble_home(occ, action.pos_to)
-
-        # Update marble position
-        mm.pos = action.pos_to
-        if self.is_in_kennel(action.pos_from, idx):
->>>>>>> origin/main
             mm.is_save = True
         return True
 
-    def apply_j_swap(self, action: Action) -> bool:
-        if action.pos_from is None or action.pos_to is None:
-            return False  # Ensure pos_from and pos_to are not None
-
+    def apply_j_swap(self, action: Action):
         pos_from = action.pos_from
         pos_to = action.pos_to
-
         from_owner = self.get_marble_owner(pos_from)
         to_owner = self.get_marble_owner(pos_to)
         if from_owner is None or to_owner is None:
             return False
-
         m1 = self.get_marble_by_pos(from_owner, pos_from)
         m2 = self.get_marble_by_pos(to_owner, pos_to)
         if m1 is None or m2 is None:
             return False
 
-<<<<<<< HEAD
         # For J swaps, according to tests:
         # Opponents safe on start can not be swapped
         # We already filtered them out in get_j_actions, so no extra check here.
@@ -967,18 +729,11 @@ class Dog(Game):
         # The problem states opponents that are safe on start cannot be swapped
         # We handled that by not listing them.
         # Just do the swap now.
-=======
-        # Check conditions: no swap if safe on start from opponent
-        # This is already filtered in get_j_actions
-
-        # Perform the swap
->>>>>>> origin/main
         p1_pos = m1.pos
         m1.pos = m2.pos
         m2.pos = p1_pos
         return True
 
-<<<<<<< HEAD
     def save_backup_state(self):
         self.seven_backup_state = copy.deepcopy(self.state)
 
@@ -1043,11 +798,6 @@ class Dog(Game):
 
     def count_used_7_steps(self):
         if not self.seven_backup_state:
-=======
-    def count_used_7_steps(self) -> int:
-        # Count total forward steps from backup to current
-        if not self.original_state_before_7:
->>>>>>> origin/main
             return 0
         old_p = self.seven_backup_state.list_player[self.state.idx_player_active]
         new_p = self.state.list_player[self.state.idx_player_active]
@@ -1065,278 +815,35 @@ class Dog(Game):
                 steps_used += fw_steps
         return steps_used
 
-    def can_apply_7_step(self, pos_from: int, pos_to: int, idx_player: int) -> bool:
+    def can_apply_7_step(self, pos_from: int, pos_to: int, idx_player: int):
         steps = (pos_to - pos_from)
         if pos_from < 64 and pos_to < 64:
             steps = (pos_to - pos_from) % 64
         if steps <= 0:
             return False
-<<<<<<< HEAD
-=======
-
-        # Check safe start marbles block and no overtaking finish
->>>>>>> origin/main
         path = self.get_path_positions(pos_from, pos_to)
         for pp in path[1:]:
             occ = self.get_marble_at_pos(pp)
             if occ is not None:
-<<<<<<< HEAD
                 o_idx = self.get_marble_owner(pp)
                 om = self.get_marble_by_pos(o_idx, pp)
                 if pp == o_idx * 16 and om.is_save:
                     return False
         occ = self.get_marble_at_pos(pos_to)
-=======
-                om = self.get_marble_by_pos(occ, pp)
-                if om is not None and pp == occ * 16 and om.is_save:
-                    return False
-
-        occ = self.get_marble_owner(pos_to)
->>>>>>> origin/main
         if occ is not None:
             o_idx = self.get_marble_owner(pos_to)
             if self.is_in_finish(pos_to, o_idx):
                 return False
-
         return True
 
-<<<<<<< HEAD
 
-=======
-    def apply_seven_step(self, action: Action) -> bool:
-        if action.pos_from is None or action.pos_to is None:
-            return False
-
-        if not self.can_apply_7_step(action.pos_from, action.pos_to, self.state.idx_player_active):
-            return False
-
-        idx = self.state.idx_player_active
-        player = self.state.list_player[idx]
-        mm = None
-        for m in player.list_marble:
-            if m.pos == action.pos_from:
-                mm = m
-                break
-        if mm is None:
-            return False
-
-        steps = action.pos_to - action.pos_from
-        if action.pos_from < 64 and action.pos_to < 64:
-            steps = (action.pos_to - action.pos_from) % 64
-        path = self.get_path_positions(action.pos_from, action.pos_to)
-
-        # send home marbles overtaken by 7 steps (except final position occupant handled after)
-        # For each intermediate step except final:
-        # Overtaking rule: all marbles on intermediate path are sent home if encountered
-        # but if a safe start marble is encountered on path => can_apply_7_step = false earlier
-        # do the sending home:
-        for pp in path[1:]:
-            if pp != action.pos_to:
-                occ = self.get_marble_owner(pp)
-                if occ is not None:
-                    om = self.get_marble_by_pos(occ, pp)
-                    # send home if not finish
-                    if not self.is_in_finish(pp, occ):
-                        self.send_marble_home(occ, pp)
-
-        # final pos occupant
-        occ = self.get_marble_owner(action.pos_to)
-        if occ is not None:
-            # send home occupant if not finish
-            if not self.is_in_finish(action.pos_to, occ):
-                self.send_marble_home(occ, action.pos_to)
-
-        mm.pos = action.pos_to
-        if self.is_in_kennel(action.pos_from, idx):
-            mm.is_save = True
-
-        self.state.steps_remaining_for_7 -= steps
-        if self.state.steps_remaining_for_7 == 0:
-            # end 7 sequence
-            # discard the 7 card
-            self.discard_card(action.card)
-            self.state.card_active = None
-            self.original_state_before_7 = None
-            self.end_turn()
-        else:
-            self.state.card_active = action.card
-        return True
-
-    def get_actions_for_seven(self, idx_player: int) -> List[Action]:
-        # must move total 7 steps splitted
-        # get possible moves from current state
-        actions: List[Action] = []
-        used = set()
-        card = Card(suit='♣', rank='7')
-        # We must use the actual card that started 7
-        if self.state.card_active and self.state.card_active.rank == '7':
-            card = self.state.card_active
-        remain = self.state.steps_remaining_for_7
-        if remain <= 0:
-            return actions
-
-        p = self.state.list_player[idx_player]
-        # possible steps from 1 to remain
-        # For each marble that is not in kennel and can move forward
-        # no backward for 7, no 0 steps
-        for mm in p.list_marble:
-            # can move 1 to remain steps forward
-            # check can_apply_7_step
-            if self.is_in_kennel(mm.pos, idx_player):
-                # can't move from kennel unless start with A/K/JKR
-                continue
-            for step in range(1, remain+1):
-                pos_to = mm.pos
-                # move step forward
-                if pos_to < 64:
-                    pos_to = (pos_to + step) % 64
-                else:
-                    pos_to = pos_to + step
-                if self.can_apply_7_step(mm.pos, pos_to, idx_player):
-                    a = Action(card=card, pos_from=mm.pos, pos_to=pos_to)
-                    key = (str(a.card), a.pos_from, a.pos_to, str(a.card_swap))
-                    if key not in used:
-                        actions.append(a)
-                        used.add(key)
-        return actions
-
-    def get_actions_for_card(self, card: Card, idx_player: int)-> List[Action]:
-        # If card=7 return get_actions_for_seven
-        if card.rank == '7':
-            return self.get_actions_for_seven(idx_player)
-
-        actions: List[Action] = []
-        used = set()
-        # if card in [A,K] can start if possible
-        if card.rank in ['A','K']:
-            if self.can_start_marble(idx_player, card):
-                kennel_start = 64 + idx_player * 8
-                for km_pos in range(kennel_start, kennel_start+4):
-                    if self.own_marble_at_pos(idx_player, km_pos):
-                        a = Action(card=card, pos_from=km_pos, pos_to=self.START_POSITION[idx_player])
-                        k = (str(a.card), a.pos_from, a.pos_to, str(a.card_swap))
-                        if k not in used:
-                            actions.append(a)
-                            used.add(k)
-
-        if card.rank == 'J':
-            j_actions = self.get_j_actions(idx_player, card)
-            for a in j_actions:
-                k = (str(a.card), a.pos_from, a.pos_to, str(a.card_swap))
-                if k not in used:
-                    actions.append(a)
-                    used.add(k)
-
-        if card.rank not in ['J','7']:
-            normal_actions = self.get_normal_moves(idx_player, card)
-            for a in normal_actions:
-                k = (str(a.card), a.pos_from, a.pos_to, str(a.card_swap))
-                if k not in used:
-                    actions.append(a)
-                    used.add(k)
-        return actions
-
-    def get_normal_moves(self, idx_player: int, card: Card) -> List[Action]:
-        rank = card.rank
-        if rank == 'A':
-            steps_options = [1, 11]
-        elif rank in ['2','3','5','6','8','9','10']:
-            steps_options = [int(rank) if rank != '10' else 10]
-        elif rank == '4':
-            steps_options = [4, -4]
-        elif rank == 'Q':
-            steps_options = [12]
-        elif rank == 'K':
-            steps_options = [13]
-        else:
-            return []
-
-        actions: List[Action] = []
-        p = self.state.list_player[idx_player]
-        for mm in p.list_marble:
-            if self.is_in_kennel(mm.pos, idx_player) and card.rank not in ['A','K','JKR']:
-                # can't move from kennel except A/K/JKR start
-                continue
-            for st in steps_options:
-                # calculate pos_to
-                pos_to = mm.pos
-                if mm.pos < 64:
-                    # circle
-                    if st > 0:
-                        pos_to = (pos_to + st) % 64
-                    else:
-                        # backward
-                        pos_to = (pos_to + st) % 64
-                else:
-                    # in finish or kennel
-                    pos_to = mm.pos + st
-
-                if self.is_move_valid(idx_player, mm.pos, pos_to, st, card):
-                    actions.append(Action(card=card, pos_from=mm.pos, pos_to=pos_to))
-        return actions
-
-    # J actions are handled in get_j_actions
-
-
-    def perform_j_swap(self, action: Action) -> bool:
-        pos_from = action.pos_from
-        pos_to = action.pos_to
-
-        # Check if pos_from and pos_to are not None
-        if pos_from is None or pos_to is None:
-            return False
-
-        from_owner = self.get_marble_owner(pos_from)
-        to_owner = self.get_marble_owner(pos_to)
-
-        if from_owner is None or to_owner is None:
-            return False
-
-        m1 = self.get_marble_by_pos(from_owner, pos_from)
-        m2 = self.get_marble_by_pos(to_owner, pos_to)
-
-        if m1 is None or m2 is None:
-            return False
-
-        # Just swap them
-        temp = m1.pos
-        m1.pos = m2.pos
-        m2.pos = temp
-        return True
-
-    def send_marble_home_if_overtaken(self, pos: int, idx_player: int) -> None:
-        # Used in 7 steps scenario
-        occ = self.get_marble_owner(pos)
-        if occ is not None:
-            om = self.get_marble_by_pos(occ, pos)
-            if om is not None:  # Check if om is not None
-                if pos != occ * 16 or not om.is_save:
-                    # Send home unless safe start marble
-                    if not self.is_in_finish(pos, occ):
-                        self.send_marble_home(occ, pos)
-
-    def check_and_end_game(self) -> None:
-        if self.check_game_finished():
-            self.state.phase = GamePhase.FINISHED
-
-    # no direct method needed further as we covered all logic
->>>>>>> origin/main
 
 class RandomPlayer(Player):
-    """Random player that selects actions randomly"""
-
     def select_action(self, state: GameState, actions: List[Action]) -> Optional[Action]:
-        """Given masked game state and possible actions, select the next action"""
-        if len(actions) > 0:
+        if actions:
             return random.choice(actions)
         return None
 
-<<<<<<< HEAD
-=======
-    def get_player_type(self) -> str:
-        """Returns the player type."""
-        return "Random"
->>>>>>> origin/main
 
 if __name__ == '__main__':
     game = Dog()
