@@ -499,7 +499,7 @@ class Dog(Game):
                 card=self.state.list_card_draw.pop()
                 self.state.list_player[idx].list_card.append(card)
 
-    def check_and_reshuffle(self):
+    def check_and_reshuffle(self) -> None:
         if not self.state.list_card_draw and self.state.list_card_discard:
             self.state.list_card_draw.extend(self.state.list_card_discard)
             self.state.list_card_discard.clear()
@@ -609,16 +609,26 @@ class Dog(Game):
             self.state.card_active=action.card
             self.state.steps_remaining_for_7=7
 
-        if (self.state.card_active.suit!=action.card.suit or self.state.card_active.rank!=action.card.rank):
-            self.state=self.original_state_before_7
-            self.original_state_before_7=None
+        if (self.state.card_active.suit != action.card.suit or self.state.card_active.rank != action.card.rank):
+            if self.original_state_before_7 is not None:
+                self.state = self.original_state_before_7
+            self.original_state_before_7 = None
             self._change_active_player()
             return
 
-        steps_moved=self.calculate_7_steps(action.pos_from,action.pos_to)
-        if steps_moved<=0 or steps_moved>self.state.steps_remaining_for_7:
-            self.state=self.original_state_before_7
-            self.original_state_before_7=None
+        if action.pos_from is not None and action.pos_to is not None:
+            steps_moved = self.calculate_7_steps(action.pos_from, action.pos_to)
+            if steps_moved <= 0 or steps_moved > self.state.steps_remaining_for_7:
+                if self.original_state_before_7 is not None:
+                    self.state = self.original_state_before_7
+                self.original_state_before_7 = None
+                self._change_active_player()
+                return
+        else:
+            # Handle the None case if necessary
+            if self.original_state_before_7 is not None:
+                self.state = self.original_state_before_7
+            self.original_state_before_7 = None
             self._change_active_player()
             return
 
@@ -651,7 +661,7 @@ class Dog(Game):
             return final_pos
         return -1
 
-    def _add_action(self,actions:List[Action],seen_actions:Set[Tuple[str,str,Optional[int],Optional[int]]],action_data:ActionData):
+    def _add_action(self,actions:List[Action],seen_actions:Set[Tuple[str,str,Optional[int],Optional[int]]],action_data:ActionData) -> None:
         action_key=(action_data.card.suit,action_data.card.rank,action_data.pos_from,action_data.pos_to)
         if action_key not in seen_actions:
             seen_actions.add(action_key)
