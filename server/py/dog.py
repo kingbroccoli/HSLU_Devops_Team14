@@ -184,6 +184,7 @@ class Dog(Game):
     def apply_action(self, action: Optional[Action]) -> None:
         if self.state.phase == GamePhase.FINISHED:
             return
+
         active_player_index = self.state.idx_player_active
 
         if action is None:
@@ -216,6 +217,20 @@ class Dog(Game):
         if self.state.card_active is None or self.state.card_active.rank != "7":
             self._move_card_to_discard(action, active_player_index)
             self._change_active_player()
+
+        # Check if the game should finish after the action
+        self.check_game_finished()
+
+    def check_game_finished(self) -> None:
+        for team in [[0, 2], [1, 3]]:
+            all_finished = all(
+                marble.pos in self.FINISH_POSITIONS[player_idx]
+                for player_idx in team
+                for marble in self.state.list_player[player_idx].list_marble
+            )
+            if all_finished:
+                self.state.phase = GamePhase.FINISHED
+                return
 
     def check_move_validity(self, active_player_idx: int, marble_idx: int, marble_new_pos: int) -> bool:
         marble = self.state.list_player[active_player_idx].list_marble[marble_idx]
