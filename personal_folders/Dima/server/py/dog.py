@@ -449,40 +449,30 @@ class Dog(Game):
     def get_normal_moves(self, idx_player: int, card: Card):
         rank = card.rank
         if rank == 'A':
-            steps_options = [1, 11]  # Ace can move 1 or 11
+            steps_options = [1, 11]
         elif rank in ['2', '3', '5', '6', '8', '9', '10']:
-            steps_options = [int(rank)]  # Normal cards move their face value
+            if rank == '10':
+                steps_options = [10]
+            else:
+                steps_options = [int(rank)]
         elif rank == '4':
-            steps_options = [-4]  # 4 only moves backward
+            steps_options = [4, -4]
         elif rank == 'Q':
-            steps_options = [12]  # Queen moves 12
+            steps_options = [12]
         elif rank == 'K':
-            steps_options = [13]  # King moves 13
+            steps_options = [13]
         else:
-            return []  # Other cards (J, 7, JKR) handled separately
+            return []
 
         actions = []
-        used = set()
         p = self.state.list_player[idx_player]
-        
         for mm in p.list_marble:
-            # Skip marbles in kennel for normal moves
-            if self.is_in_kennel(mm.pos, idx_player):
-                continue
-                
-            for steps in steps_options:
-                pos_to = self.calculate_move(idx_player, mm.pos, steps)
-                if self.is_move_valid(idx_player, mm.pos, pos_to, steps, card):
-                    key = (mm.pos, pos_to)
-                    if key not in used:
-                        actions.append(Action(
-                            card=Card(suit=card.suit, rank=card.rank),
-                            pos_from=mm.pos,
-                            pos_to=pos_to,
-                            card_swap=None
-                        ))
-                        used.add(key)
-
+            for st in steps_options:
+                pos_to = self.calculate_move(idx_player, mm.pos, st)
+                if self.is_move_valid(idx_player, mm.pos, pos_to, st, card):
+                    actions.append(Action(
+                        card=Card(suit=card.suit, rank=card.rank),
+                        pos_from=mm.pos, pos_to=pos_to, card_swap=None))
         return actions
 
     def get_j_actions(self, idx_player: int, card: Card):
