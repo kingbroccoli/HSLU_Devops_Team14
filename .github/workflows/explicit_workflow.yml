@@ -1,0 +1,43 @@
+  name: Deploy Dog Explicitly without secrets
+  on: workflow_dispatch
+  jobs:
+      deploy-job:
+        runs-on: ubuntu-latest
+        permissions:
+          contents: 'read'
+          id-token: 'write'
+        steps:
+          - name: Get code
+            uses: actions/checkout@v4.2.2
+          
+          - name: Authenticate Google Cloud
+            uses: google-github-actions/auth@v2
+            with:
+              service_account: 144447625768-compute@developer.gserviceaccount.com
+              project_id: devops-team-14-863342
+              workload_identity_provider: projects/144447625768/locations/global/workloadIdentityPools/github/providers/my-repo
+
+          
+          # Step 3: Install Google Cloud SDK
+          - name: Set up Cloud SDK
+            uses: google-github-actions/setup-gcloud@v2
+            with:
+              project_id: devops-team-14-863342
+          
+          # Step 4: Build and deploy image
+          - name: Deploy to Cloud Run
+            run: |
+              gcloud run deploy game-server-service \
+                --port 8080 \
+                --source . \
+                --region=europe-west6 \
+                --allow-unauthenticated
+
+          # Step 5: Get and print the service URL
+          - name: Get service URL
+            run: |
+              SERVICE_URL=$(gcloud run services describe game-server-service \
+                --platform=managed \
+                --region=europe-west6 \
+                --format='value(status.url)')
+              echo "Service is running at: $SERVICE_URL"        
